@@ -1,42 +1,13 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-var _exportNames = {
-  MTable: true,
-};
-Object.defineProperty(exports, "MTable", {
-  enumerable: true,
-  get: function get() {
-    return _materialTable.default;
-  },
-});
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
-);
-require("./utils/polyfill");
-var _react = _interopRequireDefault(require("react"));
-var _defaultProps = require("./default-props");
-var _propTypes = require("./prop-types");
-var _materialTable = _interopRequireDefault(require("./material-table"));
-var _styles = require("@mui/styles");
-var _components = require("./components");
-Object.keys(_components).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _components[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _components[key];
-    },
-  });
-});
-_materialTable.default.defaultProps = _defaultProps.defaultProps;
-_materialTable.default.propTypes = _propTypes.propTypes;
+import _extends from "@babel/runtime/helpers/extends";
+import "./utils/polyfill";
+import React from "react";
+import { defaultProps } from "./default-props";
+import { propTypes } from "./prop-types";
+import MaterialTable from "./material-table";
+import { withStyles } from "@mui/styles";
+MaterialTable.defaultProps = defaultProps;
+MaterialTable.propTypes = propTypes;
+export { MaterialTable as MTable };
 var styles = function styles(theme) {
   return {
     paginationRoot: {
@@ -54,13 +25,14 @@ var styles = function styles(theme) {
     },
   };
 };
-var _default = (exports.default = (0, _styles.withStyles)(styles, {
+export default withStyles(styles, {
   withTheme: true,
 })(function (props) {
-  return /*#__PURE__*/ _react.default.createElement(
-    _materialTable.default,
-    (0, _extends2.default)({}, props, {
+  return /*#__PURE__*/ React.createElement(
+    MaterialTable,
+    _extends({}, props, {
       ref: props.tableRef,
     })
   );
-}));
+});
+export * from "./components";

@@ -1,32 +1,21 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.selectionMaxWidth = exports.rowActions = exports.reducePercentsInCalc = exports.elementSize = exports.baseIconSize = exports.actionsColumnWidth = void 0;
-var elementSize = (exports.elementSize = function elementSize(props) {
+export var elementSize = function elementSize(props) {
   return props.options.padding === "default" ? "medium" : "small";
-});
-var baseIconSize = (exports.baseIconSize = function baseIconSize(props) {
+};
+export var baseIconSize = function baseIconSize(props) {
   return elementSize(props) === "medium" ? 48 : 32;
-});
-var rowActions = (exports.rowActions = function rowActions(props) {
+};
+export var rowActions = function rowActions(props) {
   return props.actions.filter(function (a) {
     return a.position === "row" || typeof a === "function";
   });
-});
-var actionsColumnWidth = (exports.actionsColumnWidth = function actionsColumnWidth(
-  props
-) {
+};
+export var actionsColumnWidth = function actionsColumnWidth(props) {
   return rowActions(props).length * baseIconSize(props);
-});
-var selectionMaxWidth = (exports.selectionMaxWidth = function selectionMaxWidth(
-  props,
-  maxTreeLevel
-) {
+};
+export var selectionMaxWidth = function selectionMaxWidth(props, maxTreeLevel) {
   return baseIconSize(props) + 9 * maxTreeLevel;
-});
-var reducePercentsInCalc = (exports.reducePercentsInCalc = function reducePercentsInCalc(
+};
+export var reducePercentsInCalc = function reducePercentsInCalc(
   calc,
   fullValue
 ) {
@@ -39,4 +28,4 @@ var reducePercentsInCalc = (exports.reducePercentsInCalc = function reducePercen
     );
   }
   return calc.replace(/\d*%/, "".concat(fullValue, "px"));
-});
+};

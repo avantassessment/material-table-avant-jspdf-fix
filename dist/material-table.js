@@ -1,90 +1,20 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof3 = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
-);
-var _toConsumableArray2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/toConsumableArray")
-);
-var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var _Table = _interopRequireDefault(require("@mui/material/Table"));
-var _TableFooter = _interopRequireDefault(require("@mui/material/TableFooter"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _LinearProgress = _interopRequireDefault(
-  require("@mui/material/LinearProgress")
-);
-var _reactDoubleScrollbar = _interopRequireDefault(
-  require("react-double-scrollbar")
-);
-var React = _interopRequireWildcard(require("react"));
-var _components = require("./components");
-var _reactBeautifulDnd = require("react-beautiful-dnd");
-var _dataManager = _interopRequireDefault(require("./utils/data-manager"));
-var _debounce = require("debounce");
-var _fastDeepEqual = _interopRequireDefault(require("fast-deep-equal"));
-var _styles = require("@mui/styles");
-var CommonValues = _interopRequireWildcard(require("./utils/common-values"));
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof3(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _extends from "@babel/runtime/helpers/extends";
+import _toConsumableArray from "@babel/runtime/helpers/toConsumableArray";
+import _typeof from "@babel/runtime/helpers/typeof";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -98,58 +28,57 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import Table from "@mui/material/Table";
+import TableFooter from "@mui/material/TableFooter";
+import TableRow from "@mui/material/TableRow";
+import LinearProgress from "@mui/material/LinearProgress";
+import DoubleScrollbar from "react-double-scrollbar";
+import * as React from "react";
+import { MTablePagination, MTableSteppedPagination } from "./components";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import DataManager from "./utils/data-manager";
+import { debounce } from "debounce";
+import equal from "fast-deep-equal";
+import { withStyles } from "@mui/styles";
+import * as CommonValues from "./utils/common-values";
+
 /* eslint-enable no-unused-vars */
-var MaterialTable = (exports.default = /*#__PURE__*/ (function (
-  _React$Component
-) {
+var MaterialTable = /*#__PURE__*/ (function (_React$Component) {
   function MaterialTable(_props) {
     var _this;
-    (0, _classCallCheck2.default)(this, MaterialTable);
+    _classCallCheck(this, MaterialTable);
     _this = _callSuper(this, MaterialTable, [_props]);
-    (0, _defineProperty2.default)(
-      _this,
-      "dataManager",
-      new _dataManager.default()
-    );
-    (0, _defineProperty2.default)(_this, "isRemoteData", function (props) {
+    _defineProperty(_this, "dataManager", new DataManager());
+    _defineProperty(_this, "isRemoteData", function (props) {
       return !Array.isArray((props || _this.props).data);
     });
-    (0, _defineProperty2.default)(_this, "isOutsidePageNumbers", function (
-      props
-    ) {
+    _defineProperty(_this, "isOutsidePageNumbers", function (props) {
       return props.page !== undefined && props.totalCount !== undefined;
     });
-    (0, _defineProperty2.default)(_this, "onAllSelected", function (checked) {
+    _defineProperty(_this, "onAllSelected", function (checked) {
       _this.dataManager.changeAllSelected(checked);
       _this.setState(_this.dataManager.getRenderState(), function () {
         return _this.onSelectionChange();
       });
     });
-    (0, _defineProperty2.default)(_this, "onChangeColumnHidden", function (
-      column,
-      hidden
-    ) {
+    _defineProperty(_this, "onChangeColumnHidden", function (column, hidden) {
       _this.dataManager.changeColumnHidden(column, hidden);
       _this.setState(_this.dataManager.getRenderState(), function () {
         _this.props.onChangeColumnHidden &&
           _this.props.onChangeColumnHidden(column, hidden);
       });
     });
-    (0, _defineProperty2.default)(_this, "onChangeGroupOrder", function (
-      groupedColumn
-    ) {
+    _defineProperty(_this, "onChangeGroupOrder", function (groupedColumn) {
       _this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onChangeOrder", function (
-      orderBy,
-      orderDirection
-    ) {
+    _defineProperty(_this, "onChangeOrder", function (orderBy, orderDirection) {
       var newOrderBy = orderDirection === "" ? -1 : orderBy;
       _this.dataManager.changeOrder(newOrderBy, orderDirection);
       if (_this.isRemoteData()) {
-        var query = (0, _objectSpread2.default)({}, _this.state.query);
+        var query = _objectSpread({}, _this.state.query);
         query.page = 0;
         query.orderBy = _this.state.columns.find(function (a) {
           return a.tableData.id === newOrderBy;
@@ -166,12 +95,9 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         });
       }
     });
-    (0, _defineProperty2.default)(_this, "onChangePage", function (
-      event,
-      page
-    ) {
+    _defineProperty(_this, "onChangePage", function (event, page) {
       if (_this.isRemoteData()) {
-        var query = (0, _objectSpread2.default)({}, _this.state.query);
+        var query = _objectSpread({}, _this.state.query);
         query.page = page;
         _this.onQueryChange(query, function () {
           _this.props.onChangePage &&
@@ -187,14 +113,12 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         });
       }
     });
-    (0, _defineProperty2.default)(_this, "onChangeRowsPerPage", function (
-      event
-    ) {
+    _defineProperty(_this, "onChangeRowsPerPage", function (event) {
       var pageSize = event.target.value;
       _this.dataManager.changePageSize(pageSize);
       _this.props.onChangePage && _this.props.onChangePage(0, pageSize);
       if (_this.isRemoteData()) {
-        var query = (0, _objectSpread2.default)({}, _this.state.query);
+        var query = _objectSpread({}, _this.state.query);
         query.pageSize = event.target.value;
         query.page = 0;
         _this.onQueryChange(query, function () {
@@ -209,7 +133,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         });
       }
     });
-    (0, _defineProperty2.default)(_this, "onDragEnd", function (result) {
+    _defineProperty(_this, "onDragEnd", function (result) {
       if (!result || !result.source || !result.destination) return;
       _this.dataManager.changeByDrag(result);
       _this.setState(_this.dataManager.getRenderState(), function () {
@@ -225,16 +149,11 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         }
       });
     });
-    (0, _defineProperty2.default)(_this, "onGroupExpandChanged", function (
-      path
-    ) {
+    _defineProperty(_this, "onGroupExpandChanged", function (path) {
       _this.dataManager.changeGroupExpand(path);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onGroupRemoved", function (
-      groupedColumn,
-      index
-    ) {
+    _defineProperty(_this, "onGroupRemoved", function (groupedColumn, index) {
       var result = {
         combine: null,
         destination: {
@@ -256,7 +175,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
           _this.props.onGroupRemoved(groupedColumn, index);
       });
     });
-    (0, _defineProperty2.default)(_this, "onEditingApproved", function (
+    _defineProperty(_this, "onEditingApproved", function (
       mode,
       newData,
       oldData
@@ -313,7 +232,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
               .then(function (result) {
                 _this.dataManager.changeRowEditing(oldData);
                 _this.setState(
-                  (0, _objectSpread2.default)(
+                  _objectSpread(
                     {
                       isLoading: false,
                     },
@@ -353,7 +272,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
               .then(function (result) {
                 _this.dataManager.changeRowEditing(oldData);
                 _this.setState(
-                  (0, _objectSpread2.default)(
+                  _objectSpread(
                     {
                       isLoading: false,
                     },
@@ -394,7 +313,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 _this.dataManager.changeBulkEditOpen(false);
                 _this.dataManager.clearBulkEditChangedRows();
                 _this.setState(
-                  (0, _objectSpread2.default)(
+                  _objectSpread(
                     {
                       isLoading: false,
                     },
@@ -421,10 +340,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         );
       }
     });
-    (0, _defineProperty2.default)(_this, "onEditingCanceled", function (
-      mode,
-      rowData
-    ) {
+    _defineProperty(_this, "onEditingCanceled", function (mode, rowData) {
       if (mode === "add") {
         _this.props.editable.onRowAddCancelled &&
           _this.props.editable.onRowAddCancelled();
@@ -441,14 +357,11 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         _this.setState(_this.dataManager.getRenderState());
       }
     });
-    (0, _defineProperty2.default)(_this, "retry", function () {
+    _defineProperty(_this, "retry", function () {
       _this.onQueryChange(_this.state.query);
     });
-    (0, _defineProperty2.default)(_this, "onQueryChange", function (
-      query,
-      callback
-    ) {
-      query = (0, _objectSpread2.default)({}, _this.state.query, query, {
+    _defineProperty(_this, "onQueryChange", function (query, callback) {
+      query = _objectSpread({}, _this.state.query, query, {
         error: _this.state.errorState,
       });
       _this.setState(
@@ -464,7 +377,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
               query.page = result.page;
               _this.dataManager.setData(result.data);
               _this.setState(
-                (0, _objectSpread2.default)(
+                _objectSpread(
                   {
                     isLoading: false,
                     errorState: false,
@@ -480,14 +393,14 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
               );
             })
             .catch(function (error) {
-              var localization = (0, _objectSpread2.default)(
+              var localization = _objectSpread(
                 {},
                 MaterialTable.defaultProps.localization,
                 _this.props.localization
               );
               var errorState = {
                 message:
-                  (0, _typeof2.default)(error) === "object"
+                  _typeof(error) === "object"
                     ? error.message
                     : error !== undefined
                     ? error
@@ -495,7 +408,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 errorCause: "query",
               };
               _this.setState(
-                (0, _objectSpread2.default)(
+                _objectSpread(
                   {
                     isLoading: false,
                     errorState: errorState,
@@ -507,7 +420,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         }
       );
     });
-    (0, _defineProperty2.default)(_this, "onRowSelected", function (
+    _defineProperty(_this, "onRowSelected", function (
       event,
       path,
       dataClicked
@@ -517,9 +430,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         return _this.onSelectionChange(dataClicked);
       });
     });
-    (0, _defineProperty2.default)(_this, "onSelectionChange", function (
-      dataClicked
-    ) {
+    _defineProperty(_this, "onSelectionChange", function (dataClicked) {
       if (_this.props.onSelectionChange) {
         var selectedRows = [];
         var findSelecteds = function findSelecteds(list) {
@@ -533,12 +444,12 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         _this.props.onSelectionChange(selectedRows, dataClicked);
       }
     });
-    (0, _defineProperty2.default)(
+    _defineProperty(
       _this,
       "onSearchChangeDebounce",
-      (0, _debounce.debounce)(function (searchText) {
+      debounce(function (searchText) {
         if (_this.isRemoteData()) {
-          var query = (0, _objectSpread2.default)({}, _this.state.query);
+          var query = _objectSpread({}, _this.state.query);
           query.page = 0;
           query.search = searchText;
           _this.onQueryChange(query);
@@ -550,19 +461,16 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         }
       }, _this.props.options.debounceInterval)
     );
-    (0, _defineProperty2.default)(_this, "onFilterChange", function (
-      columnId,
-      value
-    ) {
+    _defineProperty(_this, "onFilterChange", function (columnId, value) {
       _this.dataManager.changeFilterValue(columnId, value);
       _this.setState({}, _this.onFilterChangeDebounce);
     });
-    (0, _defineProperty2.default)(
+    _defineProperty(
       _this,
       "onFilterChangeDebounce",
-      (0, _debounce.debounce)(function () {
+      debounce(function () {
         if (_this.isRemoteData()) {
-          var query = (0, _objectSpread2.default)({}, _this.state.query);
+          var query = _objectSpread({}, _this.state.query);
           query.page = 0;
           query.filters = _this.state.columns
             .filter(function (a) {
@@ -596,54 +504,36 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         }
       }, _this.props.options.debounceInterval)
     );
-    (0, _defineProperty2.default)(_this, "onTreeExpandChanged", function (
-      path,
-      data
-    ) {
+    _defineProperty(_this, "onTreeExpandChanged", function (path, data) {
       _this.dataManager.changeTreeExpand(path);
       _this.setState(_this.dataManager.getRenderState(), function () {
         _this.props.onTreeExpandChange &&
           _this.props.onTreeExpandChange(data, data.tableData.isTreeExpanded);
       });
     });
-    (0, _defineProperty2.default)(_this, "onToggleDetailPanel", function (
-      path,
-      render
-    ) {
+    _defineProperty(_this, "onToggleDetailPanel", function (path, render) {
       _this.dataManager.changeDetailPanelVisibility(path, render);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onCellEditStarted", function (
-      rowData,
-      columnDef
-    ) {
+    _defineProperty(_this, "onCellEditStarted", function (rowData, columnDef) {
       _this.dataManager.startCellEditable(rowData, columnDef);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onCellEditFinished", function (
-      rowData,
-      columnDef
-    ) {
+    _defineProperty(_this, "onCellEditFinished", function (rowData, columnDef) {
       _this.dataManager.finishCellEditable(rowData, columnDef);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onEditRowDataChanged", function (
-      rowData,
-      newData
-    ) {
+    _defineProperty(_this, "onEditRowDataChanged", function (rowData, newData) {
       _this.dataManager.setEditRowData(rowData, newData);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "onColumnResized", function (
-      id,
-      additionalWidth
-    ) {
+    _defineProperty(_this, "onColumnResized", function (id, additionalWidth) {
       _this.dataManager.onColumnResized(id, additionalWidth);
       _this.setState(_this.dataManager.getRenderState());
     });
-    (0, _defineProperty2.default)(_this, "renderTable", function (props) {
+    _defineProperty(_this, "renderTable", function (props) {
       return /*#__PURE__*/ React.createElement(
-        _Table.default,
+        Table,
         {
           style: {
             tableLayout:
@@ -657,7 +547,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         props.options.header &&
           /*#__PURE__*/ React.createElement(props.components.Header, {
             actions: props.actions,
-            localization: (0, _objectSpread2.default)(
+            localization: _objectSpread(
               {},
               MaterialTable.defaultProps.localization.header,
               _this.props.localization.header
@@ -719,7 +609,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
           onTreeExpandChanged: _this.onTreeExpandChanged,
           onEditingCanceled: _this.onEditingCanceled,
           onEditingApproved: _this.onEditingApproved,
-          localization: (0, _objectSpread2.default)(
+          localization: _objectSpread(
             {},
             MaterialTable.defaultProps.localization.body,
             _this.props.localization.body
@@ -740,10 +630,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         })
       );
     });
-    (0, _defineProperty2.default)(_this, "getColumnsWidth", function (
-      props,
-      count
-    ) {
+    _defineProperty(_this, "getColumnsWidth", function (props, count) {
       var result = [];
       var actionsWidth = CommonValues.actionsColumnWidth(props);
       if (actionsWidth > 0) {
@@ -786,7 +673,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
     var calculatedProps = _this.getProps(_props);
     _this.setDataManagerFields(calculatedProps, true);
     var renderState = _this.dataManager.getRenderState();
-    _this.state = (0, _objectSpread2.default)(
+    _this.state = _objectSpread(
       {
         data: [],
         errorState: undefined,
@@ -822,14 +709,14 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
     _this.tableContainerDiv = React.createRef();
     return _this;
   }
-  (0, _inherits2.default)(MaterialTable, _React$Component);
-  return (0, _createClass2.default)(MaterialTable, [
+  _inherits(MaterialTable, _React$Component);
+  return _createClass(MaterialTable, [
     {
       key: "componentDidMount",
       value: function componentDidMount() {
         var _this2 = this;
         this.setState(
-          (0, _objectSpread2.default)({}, this.dataManager.getRenderState(), {
+          _objectSpread({}, this.dataManager.getRenderState(), {
             width: this.tableContainerDiv.current.scrollWidth,
           }),
           function () {
@@ -896,7 +783,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
       key: "cleanColumns",
       value: function cleanColumns(columns) {
         return columns.map(function (col) {
-          var colClone = (0, _objectSpread2.default)({}, col);
+          var colClone = _objectSpread({}, col);
           delete colClone.tableData;
           return colClone;
         });
@@ -909,17 +796,12 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
 
         var fixedPrevColumns = this.cleanColumns(prevProps.columns);
         var fixedPropsColumns = this.cleanColumns(this.props.columns);
-        var propsChanged = !(0, _fastDeepEqual.default)(
-          fixedPrevColumns,
-          fixedPropsColumns
-        );
+        var propsChanged = !equal(fixedPrevColumns, fixedPropsColumns);
         propsChanged =
-          propsChanged ||
-          !(0, _fastDeepEqual.default)(prevProps.options, this.props.options);
+          propsChanged || !equal(prevProps.options, this.props.options);
         if (!this.isRemoteData()) {
           propsChanged =
-            propsChanged ||
-            !(0, _fastDeepEqual.default)(prevProps.data, this.props.data);
+            propsChanged || !equal(prevProps.data, this.props.data);
         }
         if (propsChanged) {
           var props = this.getProps(this.props);
@@ -944,31 +826,28 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
       key: "getProps",
       value: function getProps(props) {
         var _this3 = this;
-        var calculatedProps = (0, _objectSpread2.default)(
-          {},
-          props || this.props
-        );
-        calculatedProps.components = (0, _objectSpread2.default)(
+        var calculatedProps = _objectSpread({}, props || this.props);
+        calculatedProps.components = _objectSpread(
           {},
           MaterialTable.defaultProps.components,
           calculatedProps.components
         );
-        calculatedProps.icons = (0, _objectSpread2.default)(
+        calculatedProps.icons = _objectSpread(
           {},
           MaterialTable.defaultProps.icons,
           calculatedProps.icons
         );
-        calculatedProps.options = (0, _objectSpread2.default)(
+        calculatedProps.options = _objectSpread(
           {},
           MaterialTable.defaultProps.options,
           calculatedProps.options
         );
-        var localization = (0, _objectSpread2.default)(
+        var localization = _objectSpread(
           {},
           MaterialTable.defaultProps.localization.body,
           calculatedProps.localization.body
         );
-        calculatedProps.actions = (0, _toConsumableArray2.default)(
+        calculatedProps.actions = _toConsumableArray(
           calculatedProps.actions || []
         );
         if (calculatedProps.options.selection)
@@ -989,7 +868,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                     position: "toolbarOnSelect",
                   };
                 else
-                  return (0, _objectSpread2.default)({}, action, {
+                  return _objectSpread({}, action, {
                     position: "toolbarOnSelect",
                   });
               } else if (action.isFreeAction) {
@@ -999,7 +878,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                     position: "toolbar",
                   };
                 else
-                  return (0, _objectSpread2.default)({}, action, {
+                  return _objectSpread({}, action, {
                     position: "toolbar",
                   });
               } else return action;
@@ -1022,7 +901,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                     position: "row",
                   };
                 else
-                  return (0, _objectSpread2.default)({}, action, {
+                  return _objectSpread({}, action, {
                     position: "row",
                   });
               } else if (action.isFreeAction) {
@@ -1032,7 +911,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                     position: "toolbar",
                   };
                 else
-                  return (0, _objectSpread2.default)({}, action, {
+                  return _objectSpread({}, action, {
                     position: "toolbar",
                   });
               } else return action;
@@ -1047,13 +926,9 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
               onClick: function onClick() {
                 _this3.dataManager.changeRowEditing();
                 _this3.setState(
-                  (0, _objectSpread2.default)(
-                    {},
-                    _this3.dataManager.getRenderState(),
-                    {
-                      showAddRow: !_this3.state.showAddRow,
-                    }
-                  )
+                  _objectSpread({}, _this3.dataManager.getRenderState(), {
+                    showAddRow: !_this3.state.showAddRow,
+                  })
                 );
               },
             });
@@ -1074,13 +949,9 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 onClick: function onClick(e, rowData) {
                   _this3.dataManager.changeRowEditing(rowData, "update");
                   _this3.setState(
-                    (0, _objectSpread2.default)(
-                      {},
-                      _this3.dataManager.getRenderState(),
-                      {
-                        showAddRow: false,
-                      }
-                    )
+                    _objectSpread({}, _this3.dataManager.getRenderState(), {
+                      showAddRow: false,
+                    })
                   );
                 },
               };
@@ -1102,13 +973,9 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 onClick: function onClick(e, rowData) {
                   _this3.dataManager.changeRowEditing(rowData, "delete");
                   _this3.setState(
-                    (0, _objectSpread2.default)(
-                      {},
-                      _this3.dataManager.getRenderState(),
-                      {
-                        showAddRow: false,
-                      }
-                    )
+                    _objectSpread({}, _this3.dataManager.getRenderState(), {
+                      showAddRow: false,
+                    })
                   );
                 },
               };
@@ -1155,7 +1022,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
       value: function renderFooter() {
         var props = this.getProps();
         if (props.options.paging) {
-          var localization = (0, _objectSpread2.default)(
+          var localization = _objectSpread(
             {},
             MaterialTable.defaultProps.localization.pagination,
             this.props.localization.pagination
@@ -1171,17 +1038,17 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
             ? props.totalCount
             : this.state.data.length;
           return /*#__PURE__*/ React.createElement(
-            _Table.default,
+            Table,
             null,
             /*#__PURE__*/ React.createElement(
-              _TableFooter.default,
+              TableFooter,
               {
                 style: {
                   display: "grid",
                 },
               },
               /*#__PURE__*/ React.createElement(
-                _TableRow.default,
+                TableRow,
                 null,
                 /*#__PURE__*/ React.createElement(props.components.Pagination, {
                   classes: {
@@ -1222,8 +1089,8 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                   ActionsComponent: function ActionsComponent(subProps) {
                     return props.options.paginationType === "normal"
                       ? /*#__PURE__*/ React.createElement(
-                          _components.MTablePagination,
-                          (0, _extends2.default)({}, subProps, {
+                          MTablePagination,
+                          _extends({}, subProps, {
                             icons: props.icons,
                             localization: localization,
                             showFirstLastPageButtons:
@@ -1231,8 +1098,8 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                           })
                         )
                       : /*#__PURE__*/ React.createElement(
-                          _components.MTableSteppedPagination,
-                          (0, _extends2.default)({}, subProps, {
+                          MTableSteppedPagination,
+                          _extends({}, subProps, {
                             icons: props.icons,
                             localization: localization,
                             showFirstLastPageButtons:
@@ -1260,7 +1127,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
         var _this4 = this;
         var props = this.getProps();
         return /*#__PURE__*/ React.createElement(
-          _reactBeautifulDnd.DragDropContext,
+          DragDropContext,
           {
             onDragEnd: this.onDragEnd,
             nonce: props.options.cspNonce,
@@ -1268,7 +1135,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
           /*#__PURE__*/ React.createElement(
             props.components.Container,
             {
-              style: (0, _objectSpread2.default)(
+              style: _objectSpread(
                 {
                   position: "relative",
                 },
@@ -1314,7 +1181,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 onSearchChanged: this.onSearchChangeDebounce,
                 dataManager: this.dataManager,
                 onColumnsChanged: this.onChangeColumnHidden,
-                localization: (0, _objectSpread2.default)(
+                localization: _objectSpread(
                   {},
                   MaterialTable.defaultProps.localization.toolbar,
                   this.props.localization.toolbar
@@ -1323,7 +1190,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
             props.options.grouping &&
               /*#__PURE__*/ React.createElement(props.components.Groupbar, {
                 icons: props.icons,
-                localization: (0, _objectSpread2.default)(
+                localization: _objectSpread(
                   {},
                   MaterialTable.defaultProps.localization.grouping,
                   props.localization.grouping
@@ -1346,7 +1213,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                 double: props.options.doubleHorizontalScroll,
               },
               /*#__PURE__*/ React.createElement(
-                _reactBeautifulDnd.Droppable,
+                Droppable,
                 {
                   droppableId: "headers",
                   direction: "horizontal",
@@ -1466,10 +1333,7 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
                       width: "100%",
                     },
                   },
-                  /*#__PURE__*/ React.createElement(
-                    _LinearProgress.default,
-                    null
-                  )
+                  /*#__PURE__*/ React.createElement(LinearProgress, null)
                 )
               ),
             props.options.paginationPosition === "bottom" ||
@@ -1526,7 +1390,8 @@ var MaterialTable = (exports.default = /*#__PURE__*/ (function (
       },
     },
   ]);
-})(React.Component));
+})(React.Component);
+export { MaterialTable as default };
 var style = function style() {
   return {
     horizontalScrollContainer: {
@@ -1544,16 +1409,12 @@ var style = function style() {
     },
   };
 };
-var ScrollBar = (0, _styles.withStyles)(style)(function (_ref) {
+var ScrollBar = withStyles(style)(function (_ref) {
   var double = _ref.double,
     children = _ref.children,
     classes = _ref.classes;
   if (double) {
-    return /*#__PURE__*/ React.createElement(
-      _reactDoubleScrollbar.default,
-      null,
-      children
-    );
+    return /*#__PURE__*/ React.createElement(DoubleScrollbar, null, children);
   } else {
     return /*#__PURE__*/ React.createElement(
       "div",

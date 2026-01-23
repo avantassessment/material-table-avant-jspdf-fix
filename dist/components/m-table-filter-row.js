@@ -1,91 +1,18 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _slicedToArray2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/slicedToArray")
-);
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _TextField = _interopRequireDefault(require("@mui/material/TextField"));
-var _FormControl = _interopRequireDefault(require("@mui/material/FormControl"));
-var _Select = _interopRequireDefault(require("@mui/material/Select"));
-var _Input = _interopRequireDefault(require("@mui/material/Input"));
-var _InputLabel = _interopRequireDefault(require("@mui/material/InputLabel"));
-var _MenuItem = _interopRequireDefault(require("@mui/material/MenuItem"));
-var _Checkbox = _interopRequireDefault(require("@mui/material/Checkbox"));
-var _ListItemText = _interopRequireDefault(
-  require("@mui/material/ListItemText")
-);
-var _InputAdornment = _interopRequireDefault(
-  require("@mui/material/InputAdornment")
-);
-var _Tooltip = _interopRequireDefault(require("@mui/material/Tooltip"));
-var _AdapterDateFns = _interopRequireDefault(
-  require("@mui/lab/AdapterDateFns")
-);
-var _lab = require("@mui/lab");
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _slicedToArray from "@babel/runtime/helpers/slicedToArray";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -99,7 +26,29 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import * as React from "react";
+import PropTypes from "prop-types";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
+import ListItemText from "@mui/material/ListItemText";
+import InputAdornment from "@mui/material/InputAdornment";
+import Tooltip from "@mui/material/Tooltip";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import {
+  LocalizationProvider,
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+} from "@mui/lab";
 var ITEM_HEIGHT = 48;
 var ITEM_PADDING_TOP = 8;
 var MenuProps = {
@@ -113,7 +62,7 @@ var MenuProps = {
 var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
   function MTableFilterRow() {
     var _this;
-    (0, _classCallCheck2.default)(this, MTableFilterRow);
+    _classCallCheck(this, MTableFilterRow);
     for (
       var _len = arguments.length, args = new Array(_len), _key = 0;
       _key < _len;
@@ -122,27 +71,28 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
       args[_key] = arguments[_key];
     }
     _this = _callSuper(this, MTableFilterRow, [].concat(args));
-    (0, _defineProperty2.default)(_this, "getLocalizationData", function () {
-      return (0,
-      _objectSpread2.default)({}, MTableFilterRow.defaultProps.localization, _this.props.localization);
+    _defineProperty(_this, "getLocalizationData", function () {
+      return _objectSpread(
+        {},
+        MTableFilterRow.defaultProps.localization,
+        _this.props.localization
+      );
     });
-    (0, _defineProperty2.default)(
-      _this,
-      "getLocalizedFilterPlaceHolder",
-      function (columnDef) {
-        return (
-          columnDef.filterPlaceholder ||
-          _this.getLocalizationData().filterPlaceHolder ||
-          ""
-        );
-      }
-    );
-    (0, _defineProperty2.default)(_this, "LookupFilter", function (_ref) {
+    _defineProperty(_this, "getLocalizedFilterPlaceHolder", function (
+      columnDef
+    ) {
+      return (
+        columnDef.filterPlaceholder ||
+        _this.getLocalizationData().filterPlaceHolder ||
+        ""
+      );
+    });
+    _defineProperty(_this, "LookupFilter", function (_ref) {
       var columnDef = _ref.columnDef;
       var _React$useState = React.useState(
           columnDef.tableData.filterValue || []
         ),
-        _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+        _React$useState2 = _slicedToArray(_React$useState, 2),
         selectedFilter = _React$useState2[0],
         setSelectedFilter = _React$useState2[1];
       React.useEffect(
@@ -152,14 +102,14 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
         [columnDef.tableData.filterValue]
       );
       return /*#__PURE__*/ React.createElement(
-        _FormControl.default,
+        FormControl,
         {
           style: {
             width: "100%",
           },
         },
         /*#__PURE__*/ React.createElement(
-          _InputLabel.default,
+          InputLabel,
           {
             htmlFor: "select-multiple-checkbox" + columnDef.tableData.id,
             style: {
@@ -169,7 +119,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           _this.getLocalizedFilterPlaceHolder(columnDef)
         ),
         /*#__PURE__*/ React.createElement(
-          _Select.default,
+          Select,
           {
             multiple: true,
             value: selectedFilter,
@@ -188,7 +138,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
                   event.target.value
                 );
             },
-            input: /*#__PURE__*/ React.createElement(_Input.default, {
+            input: /*#__PURE__*/ React.createElement(Input, {
               id: "select-multiple-checkbox" + columnDef.tableData.id,
             }),
             renderValue: function renderValue(selecteds) {
@@ -205,15 +155,15 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           },
           Object.keys(columnDef.lookup).map(function (key) {
             return /*#__PURE__*/ React.createElement(
-              _MenuItem.default,
+              MenuItem,
               {
                 key: key,
                 value: key,
               },
-              /*#__PURE__*/ React.createElement(_Checkbox.default, {
+              /*#__PURE__*/ React.createElement(Checkbox, {
                 checked: selectedFilter.indexOf(key.toString()) > -1,
               }),
-              /*#__PURE__*/ React.createElement(_ListItemText.default, {
+              /*#__PURE__*/ React.createElement(ListItemText, {
                 primary: columnDef.lookup[key],
               })
             );
@@ -221,18 +171,14 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
         )
       );
     });
-    (0, _defineProperty2.default)(_this, "renderFilterComponent", function (
-      columnDef
-    ) {
+    _defineProperty(_this, "renderFilterComponent", function (columnDef) {
       return React.createElement(columnDef.filterComponent, {
         columnDef: columnDef,
         onFilterChanged: _this.props.onFilterChanged,
       });
     });
-    (0, _defineProperty2.default)(_this, "renderBooleanFilter", function (
-      columnDef
-    ) {
-      return /*#__PURE__*/ React.createElement(_Checkbox.default, {
+    _defineProperty(_this, "renderBooleanFilter", function (columnDef) {
+      return /*#__PURE__*/ React.createElement(Checkbox, {
         indeterminate: columnDef.tableData.filterValue === undefined,
         checked: columnDef.tableData.filterValue === "checked",
         onChange: function onChange() {
@@ -246,12 +192,10 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
         },
       });
     });
-    (0, _defineProperty2.default)(_this, "renderDefaultFilter", function (
-      columnDef
-    ) {
+    _defineProperty(_this, "renderDefaultFilter", function (columnDef) {
       var localization = _this.getLocalizationData();
       var FilterIcon = _this.props.icons.Filter;
-      return /*#__PURE__*/ React.createElement(_TextField.default, {
+      return /*#__PURE__*/ React.createElement(TextField, {
         style:
           columnDef.type === "numeric"
             ? {
@@ -275,12 +219,12 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
             ? undefined
             : {
                 startAdornment: /*#__PURE__*/ React.createElement(
-                  _InputAdornment.default,
+                  InputAdornment,
                   {
                     position: "start",
                   },
                   /*#__PURE__*/ React.createElement(
-                    _Tooltip.default,
+                    Tooltip,
                     {
                       title: localization.filterTooltip,
                     },
@@ -290,9 +234,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
               },
       });
     });
-    (0, _defineProperty2.default)(_this, "renderDateTypeFilter", function (
-      columnDef
-    ) {
+    _defineProperty(_this, "renderDateTypeFilter", function (columnDef) {
       var onDateInputChange = function onDateInputChange(date) {
         return _this.props.onFilterChanged(columnDef.tableData.id, date);
       };
@@ -305,24 +247,24 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
       var dateInputElement = null;
       if (columnDef.type === "date") {
         dateInputElement = /*#__PURE__*/ React.createElement(
-          _lab.DatePicker,
+          DatePicker,
           pickerProps
         );
       } else if (columnDef.type === "datetime") {
         dateInputElement = /*#__PURE__*/ React.createElement(
-          _lab.DateTimePicker,
+          DateTimePicker,
           pickerProps
         );
       } else if (columnDef.type === "time") {
         dateInputElement = /*#__PURE__*/ React.createElement(
-          _lab.TimePicker,
+          TimePicker,
           pickerProps
         );
       }
       return /*#__PURE__*/ React.createElement(
-        _lab.LocalizationProvider,
+        LocalizationProvider,
         {
-          dateAdapter: _AdapterDateFns.default,
+          dateAdapter: AdapterDateFns,
           locale: _this.props.localization.dateTimePickerLocalization,
         },
         dateInputElement
@@ -330,8 +272,8 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
     });
     return _this;
   }
-  (0, _inherits2.default)(MTableFilterRow, _React$Component);
-  return (0, _createClass2.default)(MTableFilterRow, [
+  _inherits(MTableFilterRow, _React$Component);
+  return _createClass(MTableFilterRow, [
     {
       key: "getComponentForColumn",
       value: function getComponentForColumn(columnDef) {
@@ -368,10 +310,10 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           })
           .map(function (columnDef) {
             return /*#__PURE__*/ React.createElement(
-              _TableCell.default,
+              TableCell,
               {
                 key: columnDef.tableData.id,
-                style: (0, _objectSpread2.default)(
+                style: _objectSpread(
                   {},
                   _this2.props.filterCellStyle,
                   columnDef.filterCellStyle
@@ -384,7 +326,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           columns.splice(
             0,
             0,
-            /*#__PURE__*/ React.createElement(_TableCell.default, {
+            /*#__PURE__*/ React.createElement(TableCell, {
               padding: "none",
               key: "key-selection-column",
             })
@@ -393,7 +335,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
         if (this.props.hasActions) {
           if (this.props.actionsColumnIndex === -1) {
             columns.push(
-              /*#__PURE__*/ React.createElement(_TableCell.default, {
+              /*#__PURE__*/ React.createElement(TableCell, {
                 key: "key-action-column",
               })
             );
@@ -405,7 +347,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
             columns.splice(
               this.props.actionsColumnIndex + endPos,
               0,
-              /*#__PURE__*/ React.createElement(_TableCell.default, {
+              /*#__PURE__*/ React.createElement(TableCell, {
                 key: "key-action-column",
               })
             );
@@ -417,7 +359,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           columns.splice(
             index,
             0,
-            /*#__PURE__*/ React.createElement(_TableCell.default, {
+            /*#__PURE__*/ React.createElement(TableCell, {
               padding: "none",
               key: "key-detail-panel-column",
             })
@@ -427,7 +369,7 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
           columns.splice(
             0,
             0,
-            /*#__PURE__*/ React.createElement(_TableCell.default, {
+            /*#__PURE__*/ React.createElement(TableCell, {
               padding: "none",
               key: "key-tree-data-filter",
             })
@@ -441,16 +383,16 @@ var MTableFilterRow = /*#__PURE__*/ (function (_React$Component) {
             columns.splice(
               0,
               0,
-              /*#__PURE__*/ React.createElement(_TableCell.default, {
+              /*#__PURE__*/ React.createElement(TableCell, {
                 padding: "checkbox",
                 key: "key-group-filter" + columnDef.tableData.id,
               })
             );
           });
         return /*#__PURE__*/ React.createElement(
-          _TableRow.default,
+          TableRow,
           {
-            style: (0, _objectSpread2.default)(
+            style: _objectSpread(
               {
                 height: 10,
               },
@@ -474,17 +416,17 @@ MTableFilterRow.defaultProps = {
   hideFilterIcons: false,
 };
 MTableFilterRow.propTypes = {
-  columns: _propTypes.default.array.isRequired,
-  hasDetailPanel: _propTypes.default.bool.isRequired,
-  detailPanelColumnAlignment: _propTypes.default.string,
-  isTreeData: _propTypes.default.bool.isRequired,
-  onFilterChanged: _propTypes.default.func.isRequired,
-  filterCellStyle: _propTypes.default.object,
-  filterRowStyle: _propTypes.default.object,
-  selection: _propTypes.default.bool.isRequired,
-  actionsColumnIndex: _propTypes.default.number,
-  hasActions: _propTypes.default.bool,
-  localization: _propTypes.default.object,
-  hideFilterIcons: _propTypes.default.bool,
+  columns: PropTypes.array.isRequired,
+  hasDetailPanel: PropTypes.bool.isRequired,
+  detailPanelColumnAlignment: PropTypes.string,
+  isTreeData: PropTypes.bool.isRequired,
+  onFilterChanged: PropTypes.func.isRequired,
+  filterCellStyle: PropTypes.object,
+  filterRowStyle: PropTypes.object,
+  selection: PropTypes.bool.isRequired,
+  actionsColumnIndex: PropTypes.number,
+  hasActions: PropTypes.bool,
+  localization: PropTypes.object,
+  hideFilterIcons: PropTypes.bool,
 };
-var _default = (exports.default = MTableFilterRow);
+export default MTableFilterRow;

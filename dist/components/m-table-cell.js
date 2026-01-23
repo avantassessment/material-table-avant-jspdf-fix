@@ -1,43 +1,12 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
-);
-var _objectWithoutProperties2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectWithoutProperties")
-);
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var React = _interopRequireWildcard(require("react"));
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _parseISO = _interopRequireDefault(require("date-fns/parseISO"));
-var CommonValues = _interopRequireWildcard(require("../utils/common-values"));
+import _extends from "@babel/runtime/helpers/extends";
+import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProperties";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 var _excluded = [
   "icons",
   "columnDef",
@@ -47,40 +16,13 @@ var _excluded = [
   "onCellEditStarted",
   "scrollWidth",
 ];
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -94,16 +36,23 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import * as React from "react";
+import TableCell from "@mui/material/TableCell";
+import PropTypes from "prop-types";
+import parseISO from "date-fns/parseISO";
+import * as CommonValues from "../utils/common-values";
+
 /* eslint-enable no-unused-vars */
 
 /* eslint-disable no-useless-escape */
 var isoDateRegex = /^\d{4}-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])([T\s](([01]\d|2[0-3])\:[0-5]\d|24\:00)(\:[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3])\:?([0-5]\d)?)?)?$/;
 /* eslint-enable no-useless-escape */
-var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
+var MTableCell = /*#__PURE__*/ (function (_React$Component) {
   function MTableCell() {
     var _this;
-    (0, _classCallCheck2.default)(this, MTableCell);
+    _classCallCheck(this, MTableCell);
     for (
       var _len = arguments.length, args = new Array(_len), _key = 0;
       _key < _len;
@@ -112,12 +61,12 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
       args[_key] = arguments[_key];
     }
     _this = _callSuper(this, MTableCell, [].concat(args));
-    (0, _defineProperty2.default)(_this, "handleClickCell", function (e) {
+    _defineProperty(_this, "handleClickCell", function (e) {
       if (_this.props.columnDef.disableClick) {
         e.stopPropagation();
       }
     });
-    (0, _defineProperty2.default)(_this, "getStyle", function () {
+    _defineProperty(_this, "getStyle", function () {
       var width = CommonValues.reducePercentsInCalc(
         _this.props.columnDef.tableData.width,
         _this.props.scrollWidth
@@ -133,7 +82,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
         fontWeight: "inherit",
       };
       if (typeof _this.props.columnDef.cellStyle === "function") {
-        cellStyle = (0, _objectSpread2.default)(
+        cellStyle = _objectSpread(
           {},
           cellStyle,
           _this.props.columnDef.cellStyle(
@@ -142,7 +91,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           )
         );
       } else {
-        cellStyle = (0, _objectSpread2.default)(
+        cellStyle = _objectSpread(
           {},
           cellStyle,
           _this.props.columnDef.cellStyle
@@ -151,12 +100,12 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
       if (_this.props.columnDef.disableClick) {
         cellStyle.cursor = "default";
       }
-      return (0, _objectSpread2.default)({}, _this.props.style, cellStyle);
+      return _objectSpread({}, _this.props.style, cellStyle);
     });
     return _this;
   }
-  (0, _inherits2.default)(MTableCell, _React$Component);
-  return (0, _createClass2.default)(MTableCell, [
+  _inherits(MTableCell, _React$Component);
+  return _createClass(MTableCell, [
     {
       key: "getRenderValue",
       value: function getRenderValue() {
@@ -199,9 +148,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           if (this.props.value instanceof Date) {
             return this.props.value.toLocaleDateString(dateLocale);
           } else if (isoDateRegex.exec(this.props.value)) {
-            return (0, _parseISO.default)(this.props.value).toLocaleDateString(
-              dateLocale
-            );
+            return parseISO(this.props.value).toLocaleDateString(dateLocale);
           } else {
             return this.props.value;
           }
@@ -209,9 +156,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           if (this.props.value instanceof Date) {
             return this.props.value.toLocaleTimeString();
           } else if (isoDateRegex.exec(this.props.value)) {
-            return (0, _parseISO.default)(this.props.value).toLocaleTimeString(
-              dateLocale
-            );
+            return parseISO(this.props.value).toLocaleTimeString(dateLocale);
           } else {
             return this.props.value;
           }
@@ -219,9 +164,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           if (this.props.value instanceof Date) {
             return this.props.value.toLocaleString();
           } else if (isoDateRegex.exec(this.props.value)) {
-            return (0, _parseISO.default)(this.props.value).toLocaleString(
-              dateLocale
-            );
+            return parseISO(this.props.value).toLocaleString(dateLocale);
           } else {
             return this.props.value;
           }
@@ -291,10 +234,7 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           cellEditable = _this$props.cellEditable,
           onCellEditStarted = _this$props.onCellEditStarted,
           scrollWidth = _this$props.scrollWidth,
-          cellProps = (0, _objectWithoutProperties2.default)(
-            _this$props,
-            _excluded
-          );
+          cellProps = _objectWithoutProperties(_this$props, _excluded);
         var cellAlignment =
           columnDef.align !== undefined
             ? columnDef.align
@@ -320,8 +260,8 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
           );
         }
         return /*#__PURE__*/ React.createElement(
-          _TableCell.default,
-          (0, _extends2.default)(
+          TableCell,
+          _extends(
             {
               size: this.props.size,
             },
@@ -338,17 +278,15 @@ var MTableCell = (exports.default = /*#__PURE__*/ (function (_React$Component) {
       },
     },
   ]);
-})(React.Component));
+})(React.Component);
+export { MTableCell as default };
 MTableCell.defaultProps = {
   columnDef: {},
   value: undefined,
 };
 MTableCell.propTypes = {
-  columnDef: _propTypes.default.object.isRequired,
-  value: _propTypes.default.any,
-  rowData: _propTypes.default.object,
-  errorState: _propTypes.default.oneOfType([
-    _propTypes.default.object,
-    _propTypes.default.bool,
-  ]),
+  columnDef: PropTypes.object.isRequired,
+  value: PropTypes.any,
+  rowData: PropTypes.object,
+  errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };

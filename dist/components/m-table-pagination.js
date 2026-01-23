@@ -1,72 +1,17 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var _IconButton = _interopRequireDefault(require("@mui/material/IconButton"));
-var _styles = require("@mui/styles");
-var _Tooltip = _interopRequireDefault(require("@mui/material/Tooltip"));
-var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var React = _interopRequireWildcard(require("react"));
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -80,12 +25,19 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import IconButton from "@mui/material/IconButton";
+import { withStyles } from "@mui/styles";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
+import * as React from "react";
 /* eslint-enable no-unused-vars */
 var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
   function MTablePaginationInner() {
     var _this;
-    (0, _classCallCheck2.default)(this, MTablePaginationInner);
+    _classCallCheck(this, MTablePaginationInner);
     for (
       var _len = arguments.length, args = new Array(_len), _key = 0;
       _key < _len;
@@ -94,26 +46,16 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
       args[_key] = arguments[_key];
     }
     _this = _callSuper(this, MTablePaginationInner, [].concat(args));
-    (0, _defineProperty2.default)(
-      _this,
-      "handleFirstPageButtonClick",
-      function (event) {
-        _this.props.onPageChange(event, 0);
-      }
-    );
-    (0, _defineProperty2.default)(_this, "handleBackButtonClick", function (
-      event
-    ) {
+    _defineProperty(_this, "handleFirstPageButtonClick", function (event) {
+      _this.props.onPageChange(event, 0);
+    });
+    _defineProperty(_this, "handleBackButtonClick", function (event) {
       _this.props.onPageChange(event, _this.props.page - 1);
     });
-    (0, _defineProperty2.default)(_this, "handleNextButtonClick", function (
-      event
-    ) {
+    _defineProperty(_this, "handleNextButtonClick", function (event) {
       _this.props.onPageChange(event, _this.props.page + 1);
     });
-    (0, _defineProperty2.default)(_this, "handleLastPageButtonClick", function (
-      event
-    ) {
+    _defineProperty(_this, "handleLastPageButtonClick", function (event) {
       _this.props.onPageChange(
         event,
         Math.max(0, Math.ceil(_this.props.count / _this.props.rowsPerPage) - 1)
@@ -121,8 +63,8 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
     });
     return _this;
   }
-  (0, _inherits2.default)(MTablePaginationInner, _React$Component);
-  return (0, _createClass2.default)(MTablePaginationInner, [
+  _inherits(MTablePaginationInner, _React$Component);
+  return _createClass(MTablePaginationInner, [
     {
       key: "render",
       value: function render() {
@@ -133,7 +75,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
           rowsPerPage = _this$props.rowsPerPage,
           theme = _this$props.theme,
           showFirstLastPageButtons = _this$props.showFirstLastPageButtons;
-        var localization = (0, _objectSpread2.default)(
+        var localization = _objectSpread(
           {},
           MTablePaginationInner.defaultProps.localization,
           this.props.localization
@@ -145,7 +87,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
           },
           showFirstLastPageButtons &&
             /*#__PURE__*/ React.createElement(
-              _Tooltip.default,
+              Tooltip,
               {
                 title: localization.firstTooltip,
               },
@@ -153,7 +95,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
                 "span",
                 null,
                 /*#__PURE__*/ React.createElement(
-                  _IconButton.default,
+                  IconButton,
                   {
                     onClick: this.handleFirstPageButtonClick,
                     disabled: page === 0,
@@ -173,7 +115,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
               )
             ),
           /*#__PURE__*/ React.createElement(
-            _Tooltip.default,
+            Tooltip,
             {
               title: localization.previousTooltip,
             },
@@ -181,7 +123,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
               "span",
               null,
               /*#__PURE__*/ React.createElement(
-                _IconButton.default,
+                IconButton,
                 {
                   onClick: this.handleBackButtonClick,
                   disabled: page === 0,
@@ -201,7 +143,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
             )
           ),
           /*#__PURE__*/ React.createElement(
-            _Typography.default,
+            Typography,
             {
               variant: "caption",
               style: {
@@ -228,7 +170,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
               .replace("{count}", this.props.count)
           ),
           /*#__PURE__*/ React.createElement(
-            _Tooltip.default,
+            Tooltip,
             {
               title: localization.nextTooltip,
             },
@@ -236,7 +178,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
               "span",
               null,
               /*#__PURE__*/ React.createElement(
-                _IconButton.default,
+                IconButton,
                 {
                   onClick: this.handleNextButtonClick,
                   disabled: page >= Math.ceil(count / rowsPerPage) - 1,
@@ -257,7 +199,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
           ),
           showFirstLastPageButtons &&
             /*#__PURE__*/ React.createElement(
-              _Tooltip.default,
+              Tooltip,
               {
                 title: localization.lastTooltip,
               },
@@ -265,7 +207,7 @@ var MTablePaginationInner = /*#__PURE__*/ (function (_React$Component) {
                 "span",
                 null,
                 /*#__PURE__*/ React.createElement(
-                  _IconButton.default,
+                  IconButton,
                   {
                     onClick: this.handleLastPageButtonClick,
                     disabled: page >= Math.ceil(count / rowsPerPage) - 1,
@@ -300,14 +242,14 @@ var actionsStyles = function actionsStyles(theme) {
   };
 };
 MTablePaginationInner.propTypes = {
-  onPageChange: _propTypes.default.func,
-  page: _propTypes.default.number,
-  count: _propTypes.default.number,
-  rowsPerPage: _propTypes.default.number,
-  classes: _propTypes.default.object,
-  localization: _propTypes.default.object,
-  theme: _propTypes.default.any,
-  showFirstLastPageButtons: _propTypes.default.bool,
+  onPageChange: PropTypes.func,
+  page: PropTypes.number,
+  count: PropTypes.number,
+  rowsPerPage: PropTypes.number,
+  classes: PropTypes.object,
+  localization: PropTypes.object,
+  theme: PropTypes.any,
+  showFirstLastPageButtons: PropTypes.bool,
 };
 MTablePaginationInner.defaultProps = {
   showFirstLastPageButtons: true,
@@ -320,7 +262,7 @@ MTablePaginationInner.defaultProps = {
     labelRowsPerPage: "Rows per page:",
   },
 };
-var MTablePagination = (0, _styles.withStyles)(actionsStyles, {
+var MTablePagination = withStyles(actionsStyles, {
   withTheme: true,
 })(MTablePaginationInner);
-var _default = (exports.default = MTablePagination);
+export default MTablePagination;
