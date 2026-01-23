@@ -1,80 +1,57 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _toConsumableArray2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/toConsumableArray")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var _format = _interopRequireDefault(require("date-fns/format"));
-var _2 = require("./");
-var DataManager = (exports.default = /*#__PURE__*/ (function () {
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _toConsumableArray from "@babel/runtime/helpers/toConsumableArray";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
+import formatDate from "date-fns/format";
+import { byString } from "./";
+var DataManager = /*#__PURE__*/ (function () {
   function DataManager() {
     var _this = this;
-    (0, _classCallCheck2.default)(this, DataManager);
-    (0, _defineProperty2.default)(this, "applyFilters", false);
-    (0, _defineProperty2.default)(this, "applySearch", false);
-    (0, _defineProperty2.default)(this, "applySort", false);
-    (0, _defineProperty2.default)(this, "currentPage", 0);
-    (0, _defineProperty2.default)(this, "detailPanelType", "multiple");
-    (0, _defineProperty2.default)(this, "lastDetailPanelRow", undefined);
-    (0, _defineProperty2.default)(this, "lastEditingRow", undefined);
-    (0, _defineProperty2.default)(this, "orderBy", -1);
-    (0, _defineProperty2.default)(this, "orderDirection", "");
-    (0, _defineProperty2.default)(this, "pageSize", 5);
-    (0, _defineProperty2.default)(this, "paging", true);
-    (0, _defineProperty2.default)(this, "parentFunc", null);
-    (0, _defineProperty2.default)(this, "searchText", "");
-    (0, _defineProperty2.default)(this, "selectedCount", 0);
-    (0, _defineProperty2.default)(this, "treefiedDataLength", 0);
-    (0, _defineProperty2.default)(this, "treeDataMaxLevel", 0);
-    (0, _defineProperty2.default)(this, "groupedDataLength", 0);
-    (0, _defineProperty2.default)(this, "defaultExpanded", false);
-    (0, _defineProperty2.default)(this, "bulkEditOpen", false);
-    (0, _defineProperty2.default)(this, "bulkEditChangedRows", {});
-    (0, _defineProperty2.default)(this, "data", []);
-    (0, _defineProperty2.default)(this, "columns", []);
-    (0, _defineProperty2.default)(this, "filteredData", []);
-    (0, _defineProperty2.default)(this, "searchedData", []);
-    (0, _defineProperty2.default)(this, "groupedData", []);
-    (0, _defineProperty2.default)(this, "treefiedData", []);
-    (0, _defineProperty2.default)(this, "sortedData", []);
-    (0, _defineProperty2.default)(this, "pagedData", []);
-    (0, _defineProperty2.default)(this, "renderData", []);
-    (0, _defineProperty2.default)(this, "filtered", false);
-    (0, _defineProperty2.default)(this, "searched", false);
-    (0, _defineProperty2.default)(this, "grouped", false);
-    (0, _defineProperty2.default)(this, "treefied", false);
-    (0, _defineProperty2.default)(this, "sorted", false);
-    (0, _defineProperty2.default)(this, "paged", false);
-    (0, _defineProperty2.default)(this, "rootGroupsIndex", {});
-    (0, _defineProperty2.default)(this, "startCellEditable", function (
-      rowData,
-      columnDef
-    ) {
+    _classCallCheck(this, DataManager);
+    _defineProperty(this, "applyFilters", false);
+    _defineProperty(this, "applySearch", false);
+    _defineProperty(this, "applySort", false);
+    _defineProperty(this, "currentPage", 0);
+    _defineProperty(this, "detailPanelType", "multiple");
+    _defineProperty(this, "lastDetailPanelRow", undefined);
+    _defineProperty(this, "lastEditingRow", undefined);
+    _defineProperty(this, "orderBy", -1);
+    _defineProperty(this, "orderDirection", "");
+    _defineProperty(this, "pageSize", 5);
+    _defineProperty(this, "paging", true);
+    _defineProperty(this, "parentFunc", null);
+    _defineProperty(this, "searchText", "");
+    _defineProperty(this, "selectedCount", 0);
+    _defineProperty(this, "treefiedDataLength", 0);
+    _defineProperty(this, "treeDataMaxLevel", 0);
+    _defineProperty(this, "groupedDataLength", 0);
+    _defineProperty(this, "defaultExpanded", false);
+    _defineProperty(this, "bulkEditOpen", false);
+    _defineProperty(this, "bulkEditChangedRows", {});
+    _defineProperty(this, "data", []);
+    _defineProperty(this, "columns", []);
+    _defineProperty(this, "filteredData", []);
+    _defineProperty(this, "searchedData", []);
+    _defineProperty(this, "groupedData", []);
+    _defineProperty(this, "treefiedData", []);
+    _defineProperty(this, "sortedData", []);
+    _defineProperty(this, "pagedData", []);
+    _defineProperty(this, "renderData", []);
+    _defineProperty(this, "filtered", false);
+    _defineProperty(this, "searched", false);
+    _defineProperty(this, "grouped", false);
+    _defineProperty(this, "treefied", false);
+    _defineProperty(this, "sorted", false);
+    _defineProperty(this, "paged", false);
+    _defineProperty(this, "rootGroupsIndex", {});
+    _defineProperty(this, "startCellEditable", function (rowData, columnDef) {
       rowData.tableData.editCellList = [].concat(
-        (0, _toConsumableArray2.default)(rowData.tableData.editCellList || []),
+        _toConsumableArray(rowData.tableData.editCellList || []),
         [columnDef]
       );
     });
-    (0, _defineProperty2.default)(this, "finishCellEditable", function (
-      rowData,
-      columnDef
-    ) {
+    _defineProperty(this, "finishCellEditable", function (rowData, columnDef) {
       if (rowData.tableData.editCellList) {
         var index = rowData.tableData.editCellList.findIndex(function (c) {
           return c.tableData.id === columnDef.tableData.id;
@@ -84,23 +61,16 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         }
       }
     });
-    (0, _defineProperty2.default)(
-      this,
-      "clearBulkEditChangedRows",
-      function () {
-        _this.bulkEditChangedRows = {};
-      }
-    );
-    (0, _defineProperty2.default)(this, "onBulkEditRowChanged", function (
-      oldData,
-      newData
-    ) {
+    _defineProperty(this, "clearBulkEditChangedRows", function () {
+      _this.bulkEditChangedRows = {};
+    });
+    _defineProperty(this, "onBulkEditRowChanged", function (oldData, newData) {
       _this.bulkEditChangedRows[oldData.tableData.id] = {
         oldData: oldData,
         newData: newData,
       };
     });
-    (0, _defineProperty2.default)(this, "expandTreeForNodes", function (data) {
+    _defineProperty(this, "expandTreeForNodes", function (data) {
       data.forEach(function (row) {
         var currentRow = row;
         while (_this.parentFunc(currentRow, _this.data)) {
@@ -112,10 +82,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         }
       });
     });
-    (0, _defineProperty2.default)(this, "findDataByPath", function (
-      renderData,
-      path
-    ) {
+    _defineProperty(this, "findDataByPath", function (renderData, path) {
       if (_this.isDataType("tree")) {
         var node = path.reduce(
           function (result, current) {
@@ -149,10 +116,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         return _node;
       }
     });
-    (0, _defineProperty2.default)(this, "getFieldValue", function (
-      rowData,
-      columnDef
-    ) {
+    _defineProperty(this, "getFieldValue", function (rowData, columnDef) {
       var lookup =
         arguments.length > 2 && arguments[2] !== undefined
           ? arguments[2]
@@ -160,13 +124,13 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
       var value =
         typeof rowData[columnDef.field] !== "undefined"
           ? rowData[columnDef.field]
-          : (0, _2.byString)(rowData, columnDef.field);
+          : byString(rowData, columnDef.field);
       if (columnDef.lookup && lookup) {
         value = columnDef.lookup[value];
       }
       return value;
     });
-    (0, _defineProperty2.default)(this, "getRenderState", function () {
+    _defineProperty(this, "getRenderState", function () {
       if (_this.filtered === false) {
         _this.filterData();
       }
@@ -202,9 +166,9 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         groupedDataLength: _this.groupedDataLength,
       };
     });
-    (0, _defineProperty2.default)(this, "filterData", function () {
+    _defineProperty(this, "filterData", function () {
       _this.searched = _this.grouped = _this.treefied = _this.sorted = _this.paged = false;
-      _this.filteredData = (0, _toConsumableArray2.default)(_this.data);
+      _this.filteredData = _toConsumableArray(_this.data);
       if (_this.applyFilters) {
         _this.columns
           .filter(function (columnDef) {
@@ -259,20 +223,20 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
                     var currentDateToCompare = "";
                     var selectedDateToCompare = "";
                     if (type === "date") {
-                      currentDateToCompare = (0, _format.default)(
+                      currentDateToCompare = formatDate(
                         currentDate,
                         "MM/dd/yyyy"
                       );
-                      selectedDateToCompare = (0, _format.default)(
+                      selectedDateToCompare = formatDate(
                         selectedDate,
                         "MM/dd/yyyy"
                       );
                     } else if (type === "datetime") {
-                      currentDateToCompare = (0, _format.default)(
+                      currentDateToCompare = formatDate(
                         currentDate,
                         "MM/dd/yyyy - HH:mm"
                       );
-                      selectedDateToCompare = (0, _format.default)(
+                      selectedDateToCompare = formatDate(
                         selectedDate,
                         "MM/dd/yyyy - HH:mm"
                       );
@@ -287,7 +251,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
                   var currentHour = value || null;
                   if (currentHour) {
                     var selectedHour = tableData.filterValue;
-                    var currentHourToCompare = (0, _format.default)(
+                    var currentHourToCompare = formatDate(
                       selectedHour,
                       "HH:mm"
                     );
@@ -312,9 +276,9 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
       }
       _this.filtered = true;
     });
-    (0, _defineProperty2.default)(this, "searchData", function () {
+    _defineProperty(this, "searchData", function () {
       _this.grouped = _this.treefied = _this.sorted = _this.paged = false;
-      _this.searchedData = (0, _toConsumableArray2.default)(_this.filteredData);
+      _this.searchedData = _toConsumableArray(_this.filteredData);
       if (_this.searchText && _this.applySearch) {
         var trimmedSearchText = _this.searchText.trim();
         _this.searchedData = _this.searchedData.filter(function (row) {
@@ -346,14 +310,14 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
       _this.searched = true;
     });
   }
-  return (0, _createClass2.default)(DataManager, [
+  return _createClass(DataManager, [
     {
       key: "setData",
       value: function setData(data) {
         var _this2 = this;
         this.selectedCount = 0;
         this.data = data.map(function (row, index) {
-          row.tableData = (0, _objectSpread2.default)({}, row.tableData, {
+          row.tableData = _objectSpread({}, row.tableData, {
             id: index,
           });
           if (row.tableData.checked) {
@@ -374,7 +338,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         });
         var usedWidth = ["0px"];
         this.columns = columns.map(function (columnDef, index) {
-          columnDef.tableData = (0, _objectSpread2.default)(
+          columnDef.tableData = _objectSpread(
             {
               columnOrder: index,
               filterValue: columnDef.defaultFilter,
@@ -859,7 +823,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         var _this5 = this;
         this.sorted = this.paged = false;
         this.groupedDataLength = 0;
-        var tmpData = (0, _toConsumableArray2.default)(this.searchedData);
+        var tmpData = _toConsumableArray(this.searchedData);
         var groups = this.columns
           .filter(function (col) {
             return col.tableData.groupOrder > -1;
@@ -872,17 +836,13 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
             var object = result;
             object = groups.reduce(function (o, colDef) {
               var value =
-                currentRow[colDef.field] ||
-                (0, _2.byString)(currentRow, colDef.field);
+                currentRow[colDef.field] || byString(currentRow, colDef.field);
               var group;
               if (o.groupsIndex[value] !== undefined) {
                 group = o.groups[o.groupsIndex[value]];
               }
               if (!group) {
-                var path = [].concat(
-                  (0, _toConsumableArray2.default)(o.path || []),
-                  [value]
-                );
+                var path = [].concat(_toConsumableArray(o.path || []), [value]);
                 var oldGroup = _this5.findGroupByGroupPath(
                   _this5.groupedData,
                   path
@@ -956,7 +916,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
             }
             _addRow(parent);
             rowData.tableData.path = [].concat(
-              (0, _toConsumableArray2.default)(parent.tableData.path),
+              _toConsumableArray(parent.tableData.path),
               [parent.tableData.childRows.length - 1]
             );
             _this6.treeDataMaxLevel = Math.max(
@@ -1051,7 +1011,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
         var _this7 = this;
         this.paged = false;
         if (this.isDataType("group")) {
-          this.sortedData = (0, _toConsumableArray2.default)(this.groupedData);
+          this.sortedData = _toConsumableArray(this.groupedData);
           var groups = this.columns
             .filter(function (col) {
               return col.tableData.groupOrder > -1;
@@ -1098,7 +1058,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
           };
           _sortGroupData(this.sortedData, 1);
         } else if (this.isDataType("tree")) {
-          this.sortedData = (0, _toConsumableArray2.default)(this.treefiedData);
+          this.sortedData = _toConsumableArray(this.treefiedData);
           if (this.orderBy != -1) {
             this.sortedData = this.sortList(this.sortedData);
             var _sortTree = function sortTree(list) {
@@ -1114,7 +1074,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
             _sortTree(this.sortedData);
           }
         } else if (this.isDataType("normal")) {
-          this.sortedData = (0, _toConsumableArray2.default)(this.searchedData);
+          this.sortedData = _toConsumableArray(this.searchedData);
           if (this.orderBy != -1 && this.applySort) {
             this.sortedData = this.sortList(this.sortedData);
           }
@@ -1125,7 +1085,7 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
     {
       key: "pageData",
       value: function pageData() {
-        this.pagedData = (0, _toConsumableArray2.default)(this.sortedData);
+        this.pagedData = _toConsumableArray(this.sortedData);
         if (this.paging) {
           var startIndex = this.currentPage * this.pageSize;
           var endIndex = startIndex + this.pageSize;
@@ -1135,4 +1095,5 @@ var DataManager = (exports.default = /*#__PURE__*/ (function () {
       },
     },
   ]);
-})());
+})();
+export { DataManager as default };

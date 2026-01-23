@@ -1,71 +1,17 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _toConsumableArray2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/toConsumableArray")
-);
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _TableBody = _interopRequireDefault(require("@mui/material/TableBody"));
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var React = _interopRequireWildcard(require("react"));
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _toConsumableArray from "@babel/runtime/helpers/toConsumableArray";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -79,20 +25,26 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import PropTypes from "prop-types";
+import * as React from "react";
 /* eslint-enable no-unused-vars */
 var MTableBody = /*#__PURE__*/ (function (_React$Component) {
   function MTableBody() {
-    (0, _classCallCheck2.default)(this, MTableBody);
+    _classCallCheck(this, MTableBody);
     return _callSuper(this, MTableBody, arguments);
   }
-  (0, _inherits2.default)(MTableBody, _React$Component);
-  return (0, _createClass2.default)(MTableBody, [
+  _inherits(MTableBody, _React$Component);
+  return _createClass(MTableBody, [
     {
       key: "renderEmpty",
       value: function renderEmpty(emptyRowCount, renderData) {
         var rowHeight = this.props.options.padding === "default" ? 49 : 36;
-        var localization = (0, _objectSpread2.default)(
+        var localization = _objectSpread(
           {},
           MTableBody.defaultProps.localization,
           this.props.localization
@@ -120,7 +72,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
             addColumn++;
           }
           return /*#__PURE__*/ React.createElement(
-            _TableRow.default,
+            TableRow,
             {
               style: {
                 height:
@@ -133,7 +85,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
               key: "empty-" + 0,
             },
             /*#__PURE__*/ React.createElement(
-              _TableCell.default,
+              TableCell,
               {
                 style: {
                   paddingTop: 0,
@@ -156,18 +108,16 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
           return /*#__PURE__*/ React.createElement(
             React.Fragment,
             null,
-            (0, _toConsumableArray2.default)(Array(emptyRowCount)).map(
-              function (r, index) {
-                return /*#__PURE__*/ React.createElement(_TableRow.default, {
-                  style: {
-                    height: rowHeight,
-                  },
-                  key: "empty-" + index,
-                });
-              }
-            ),
+            _toConsumableArray(Array(emptyRowCount)).map(function (r, index) {
+              return /*#__PURE__*/ React.createElement(TableRow, {
+                style: {
+                  height: rowHeight,
+                },
+                key: "empty-" + index,
+              });
+            }),
             emptyRowCount > 0 &&
-              /*#__PURE__*/ React.createElement(_TableRow.default, {
+              /*#__PURE__*/ React.createElement(TableRow, {
                 style: {
                   height: 1,
                 },
@@ -193,7 +143,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
                 data: data,
                 errorState: _this.props.errorState,
                 icons: _this.props.icons,
-                localization: (0, _objectSpread2.default)(
+                localization: _objectSpread(
                   {},
                   MTableBody.defaultProps.localization.editRow,
                   _this.props.localization.editRow,
@@ -228,7 +178,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
                 key: "row-" + data.tableData.id,
                 level: 0,
                 options: _this.props.options,
-                localization: (0, _objectSpread2.default)(
+                localization: _objectSpread(
                   {},
                   MTableBody.defaultProps.localization.editRow,
                   _this.props.localization.editRow,
@@ -290,7 +240,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
               options: _this2.props.options,
               isTreeData: _this2.props.isTreeData,
               hasAnyEditingRow: _this2.props.hasAnyEditingRow,
-              localization: (0, _objectSpread2.default)(
+              localization: _objectSpread(
                 {},
                 MTableBody.defaultProps.localization.editRow,
                 _this2.props.localization.editRow,
@@ -325,7 +275,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
           emptyRowCount = this.props.pageSize - renderData.length;
         }
         return /*#__PURE__*/ React.createElement(
-          _TableBody.default,
+          TableBody,
           null,
           this.props.options.filtering &&
             /*#__PURE__*/ React.createElement(this.props.components.FilterRow, {
@@ -340,7 +290,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
               actionsColumnIndex: this.props.options.actionsColumnIndex,
               onFilterChanged: this.props.onFilterChanged,
               selection: this.props.options.selection,
-              localization: (0, _objectSpread2.default)(
+              localization: _objectSpread(
                 {},
                 MTableBody.defaultProps.localization.filterRow,
                 this.props.localization.filterRow,
@@ -370,7 +320,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
               icons: this.props.icons,
               key: "key-add-row",
               mode: "add",
-              localization: (0, _objectSpread2.default)(
+              localization: _objectSpread(
                 {},
                 MTableBody.defaultProps.localization.editRow,
                 this.props.localization.editRow,
@@ -402,7 +352,7 @@ var MTableBody = /*#__PURE__*/ (function (_React$Component) {
               icons: this.props.icons,
               key: "key-add-row",
               mode: "add",
-              localization: (0, _objectSpread2.default)(
+              localization: _objectSpread(
                 {},
                 MTableBody.defaultProps.localization.editRow,
                 this.props.localization.editRow,
@@ -438,49 +388,41 @@ MTableBody.defaultProps = {
   },
 };
 MTableBody.propTypes = {
-  actions: _propTypes.default.array,
-  components: _propTypes.default.object.isRequired,
-  columns: _propTypes.default.array.isRequired,
-  currentPage: _propTypes.default.number,
-  detailPanel: _propTypes.default.oneOfType([
-    _propTypes.default.func,
-    _propTypes.default.arrayOf(
-      _propTypes.default.oneOfType([
-        _propTypes.default.object,
-        _propTypes.default.func,
-      ])
-    ),
+  actions: PropTypes.array,
+  components: PropTypes.object.isRequired,
+  columns: PropTypes.array.isRequired,
+  currentPage: PropTypes.number,
+  detailPanel: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.func])),
   ]),
-  getFieldValue: _propTypes.default.func.isRequired,
-  hasAnyEditingRow: _propTypes.default.bool,
-  hasDetailPanel: _propTypes.default.bool.isRequired,
-  icons: _propTypes.default.object.isRequired,
-  isTreeData: _propTypes.default.bool.isRequired,
-  onRowSelected: _propTypes.default.func,
-  options: _propTypes.default.object.isRequired,
-  pageSize: _propTypes.default.number,
-  renderData: _propTypes.default.array,
-  initialFormData: _propTypes.default.object,
-  selection: _propTypes.default.bool.isRequired,
-  scrollWidth: _propTypes.default.number.isRequired,
-  showAddRow: _propTypes.default.bool,
-  treeDataMaxLevel: _propTypes.default.number,
-  localization: _propTypes.default.object,
-  onFilterChanged: _propTypes.default.func,
-  onGroupExpandChanged: _propTypes.default.func,
-  onToggleDetailPanel: _propTypes.default.func.isRequired,
-  onTreeExpandChanged: _propTypes.default.func.isRequired,
-  onRowClick: _propTypes.default.func,
-  onEditingCanceled: _propTypes.default.func,
-  onEditingApproved: _propTypes.default.func,
-  errorState: _propTypes.default.oneOfType([
-    _propTypes.default.object,
-    _propTypes.default.bool,
-  ]),
-  cellEditable: _propTypes.default.object,
-  onCellEditStarted: _propTypes.default.func,
-  onCellEditFinished: _propTypes.default.func,
-  bulkEditOpen: _propTypes.default.bool,
-  onBulkEditRowChanged: _propTypes.default.func,
+  getFieldValue: PropTypes.func.isRequired,
+  hasAnyEditingRow: PropTypes.bool,
+  hasDetailPanel: PropTypes.bool.isRequired,
+  icons: PropTypes.object.isRequired,
+  isTreeData: PropTypes.bool.isRequired,
+  onRowSelected: PropTypes.func,
+  options: PropTypes.object.isRequired,
+  pageSize: PropTypes.number,
+  renderData: PropTypes.array,
+  initialFormData: PropTypes.object,
+  selection: PropTypes.bool.isRequired,
+  scrollWidth: PropTypes.number.isRequired,
+  showAddRow: PropTypes.bool,
+  treeDataMaxLevel: PropTypes.number,
+  localization: PropTypes.object,
+  onFilterChanged: PropTypes.func,
+  onGroupExpandChanged: PropTypes.func,
+  onToggleDetailPanel: PropTypes.func.isRequired,
+  onTreeExpandChanged: PropTypes.func.isRequired,
+  onRowClick: PropTypes.func,
+  onEditingCanceled: PropTypes.func,
+  onEditingApproved: PropTypes.func,
+  errorState: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  cellEditable: PropTypes.object,
+  onCellEditStarted: PropTypes.func,
+  onCellEditFinished: PropTypes.func,
+  bulkEditOpen: PropTypes.bool,
+  onBulkEditRowChanged: PropTypes.func,
 };
-var _default = (exports.default = MTableBody);
+export default MTableBody;

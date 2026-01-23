@@ -1,83 +1,18 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.styles = exports.default = exports.MTableHeader = void 0;
-var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
-);
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var React = _interopRequireWildcard(require("react"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var _TableHead = _interopRequireDefault(require("@mui/material/TableHead"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _TableSortLabel = _interopRequireDefault(
-  require("@mui/material/TableSortLabel")
-);
-var _Checkbox = _interopRequireDefault(require("@mui/material/Checkbox"));
-var _styles = require("@mui/styles");
-var _reactBeautifulDnd = require("react-beautiful-dnd");
-var _material = require("@mui/material");
-var CommonValues = _interopRequireWildcard(require("../utils/common-values"));
-var _fastDeepEqual = _interopRequireDefault(require("fast-deep-equal"));
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _extends from "@babel/runtime/helpers/extends";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -91,26 +26,36 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import * as React from "react";
+import PropTypes from "prop-types";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { withStyles } from "@mui/styles";
+import { Draggable } from "react-beautiful-dnd";
+import { Tooltip } from "@mui/material";
+import * as CommonValues from "../utils/common-values";
+import equal from "fast-deep-equal";
+
 /* eslint-enable no-unused-vars */
-var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
-  _React$Component
-) {
+
+export var MTableHeader = /*#__PURE__*/ (function (_React$Component) {
   function MTableHeader(props) {
     var _this;
-    (0, _classCallCheck2.default)(this, MTableHeader);
+    _classCallCheck(this, MTableHeader);
     _this = _callSuper(this, MTableHeader, [props]);
-    (0, _defineProperty2.default)(_this, "handleMouseDown", function (
-      e,
-      columnDef
-    ) {
+    _defineProperty(_this, "handleMouseDown", function (e, columnDef) {
       _this.setState({
         lastAdditionalWidth: columnDef.tableData.additionalWidth,
         lastX: e.clientX,
         resizingColumnDef: columnDef,
       });
     });
-    (0, _defineProperty2.default)(_this, "handleMouseMove", function (e) {
+    _defineProperty(_this, "handleMouseMove", function (e) {
       if (!_this.state.resizingColumnDef) {
         return;
       }
@@ -130,17 +75,17 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
         );
       }
     });
-    (0, _defineProperty2.default)(_this, "handleMouseUp", function (e) {
+    _defineProperty(_this, "handleMouseUp", function (e) {
       _this.setState({
         resizingColumnDef: undefined,
       });
     });
-    (0, _defineProperty2.default)(_this, "getCellStyle", function (columnDef) {
+    _defineProperty(_this, "getCellStyle", function (columnDef) {
       var width = CommonValues.reducePercentsInCalc(
         columnDef.tableData.width,
         _this.props.scrollWidth
       );
-      var style = (0, _objectSpread2.default)(
+      var style = _objectSpread(
         {},
         _this.props.headerStyle,
         columnDef.headerStyle,
@@ -170,8 +115,8 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
   // shouldComponentUpdate(nextProps, nextState){
   //   return !equal(nextProps, this.props) || !equal(nextState, this.state);
   // }
-  (0, _inherits2.default)(MTableHeader, _React$Component);
-  return (0, _createClass2.default)(MTableHeader, [
+  _inherits(MTableHeader, _React$Component);
+  return _createClass(MTableHeader, [
     {
       key: "componentDidMount",
       value: function componentDidMount() {
@@ -203,7 +148,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
             var content = columnDef.title;
             if (_this2.props.draggable) {
               content = /*#__PURE__*/ React.createElement(
-                _reactBeautifulDnd.Draggable,
+                Draggable,
                 {
                   key: columnDef.tableData.id,
                   draggableId: columnDef.tableData.id.toString(),
@@ -212,7 +157,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
                 function (provided, snapshot) {
                   return /*#__PURE__*/ React.createElement(
                     "div",
-                    (0, _extends2.default)(
+                    _extends(
                       {
                         ref: provided.innerRef,
                       },
@@ -226,7 +171,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
             }
             if (columnDef.sorting !== false && _this2.props.sorting) {
               content = /*#__PURE__*/ React.createElement(
-                _TableSortLabel.default,
+                TableSortLabel,
                 {
                   IconComponent: _this2.props.icons.SortArrow,
                   active: _this2.props.orderBy === columnDef.tableData.id,
@@ -257,7 +202,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
             }
             if (columnDef.tooltip) {
               content = /*#__PURE__*/ React.createElement(
-                _material.Tooltip,
+                Tooltip,
                 {
                   title: columnDef.tooltip,
                   placement: "bottom",
@@ -311,7 +256,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
                 ? "right"
                 : "left";
             return /*#__PURE__*/ React.createElement(
-              _TableCell.default,
+              TableCell,
               {
                 key: columnDef.tableData.id,
                 align: cellAlignment,
@@ -328,26 +273,26 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
     {
       key: "renderActionsHeader",
       value: function renderActionsHeader() {
-        var localization = (0, _objectSpread2.default)(
+        var localization = _objectSpread(
           {},
           MTableHeader.defaultProps.localization,
           this.props.localization
         );
         var width = CommonValues.actionsColumnWidth(this.props);
         return /*#__PURE__*/ React.createElement(
-          _TableCell.default,
+          TableCell,
           {
             key: "key-actions-column",
             padding: "checkbox",
             className: this.props.classes.header,
-            style: (0, _objectSpread2.default)({}, this.props.headerStyle, {
+            style: _objectSpread({}, this.props.headerStyle, {
               width: width,
               textAlign: "center",
               boxSizing: "border-box",
             }),
           },
           /*#__PURE__*/ React.createElement(
-            _TableSortLabel.default,
+            TableSortLabel,
             {
               hideSortIcon: true,
               disabled: true,
@@ -366,19 +311,19 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
           this.props.treeDataMaxLevel
         );
         return /*#__PURE__*/ React.createElement(
-          _TableCell.default,
+          TableCell,
           {
             padding: "none",
             key: "key-selection-column",
             className: this.props.classes.header,
-            style: (0, _objectSpread2.default)({}, this.props.headerStyle, {
+            style: _objectSpread({}, this.props.headerStyle, {
               width: selectionWidth,
             }),
           },
           this.props.showSelectAllCheckbox &&
             /*#__PURE__*/ React.createElement(
-              _Checkbox.default,
-              (0, _extends2.default)(
+              Checkbox,
+              _extends(
                 {
                   indeterminate:
                     this.props.selectedCount > 0 &&
@@ -402,11 +347,11 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
     {
       key: "renderDetailPanelColumnCell",
       value: function renderDetailPanelColumnCell() {
-        return /*#__PURE__*/ React.createElement(_TableCell.default, {
+        return /*#__PURE__*/ React.createElement(TableCell, {
           padding: "none",
           key: "key-detail-panel-column",
           className: this.props.classes.header,
-          style: (0, _objectSpread2.default)({}, this.props.headerStyle),
+          style: _objectSpread({}, this.props.headerStyle),
         });
       },
     },
@@ -444,11 +389,11 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
           headers.splice(
             0,
             0,
-            /*#__PURE__*/ React.createElement(_TableCell.default, {
+            /*#__PURE__*/ React.createElement(TableCell, {
               padding: "none",
               key: "key-tree-data-header",
               className: this.props.classes.header,
-              style: (0, _objectSpread2.default)({}, this.props.headerStyle),
+              style: _objectSpread({}, this.props.headerStyle),
             })
           );
         }
@@ -460,7 +405,7 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
             headers.splice(
               0,
               0,
-              /*#__PURE__*/ React.createElement(_TableCell.default, {
+              /*#__PURE__*/ React.createElement(TableCell, {
                 padding: "checkbox",
                 key: "key-group-header" + columnDef.tableData.id,
                 className: _this4.props.classes.header,
@@ -468,14 +413,14 @@ var MTableHeader = (exports.MTableHeader = /*#__PURE__*/ (function (
             );
           });
         return /*#__PURE__*/ React.createElement(
-          _TableHead.default,
+          TableHead,
           null,
-          /*#__PURE__*/ React.createElement(_TableRow.default, null, headers)
+          /*#__PURE__*/ React.createElement(TableRow, null, headers)
         );
       },
     },
   ]);
-})(React.Component));
+})(React.Component);
 MTableHeader.defaultProps = {
   dataCount: 0,
   hasSelection: false,
@@ -493,27 +438,27 @@ MTableHeader.defaultProps = {
   thirdSortClick: true,
 };
 MTableHeader.propTypes = {
-  columns: _propTypes.default.array.isRequired,
-  dataCount: _propTypes.default.number,
-  hasDetailPanel: _propTypes.default.bool.isRequired,
-  detailPanelColumnAlignment: _propTypes.default.string,
-  hasSelection: _propTypes.default.bool,
-  headerStyle: _propTypes.default.object,
-  localization: _propTypes.default.object,
-  selectedCount: _propTypes.default.number,
-  sorting: _propTypes.default.bool,
-  onAllSelected: _propTypes.default.func,
-  onOrderChange: _propTypes.default.func,
-  orderBy: _propTypes.default.number,
-  orderDirection: _propTypes.default.string,
-  actionsHeaderIndex: _propTypes.default.number,
-  showActionsColumn: _propTypes.default.bool,
-  showSelectAllCheckbox: _propTypes.default.bool,
-  draggable: _propTypes.default.bool,
-  thirdSortClick: _propTypes.default.bool,
-  tooltip: _propTypes.default.string,
+  columns: PropTypes.array.isRequired,
+  dataCount: PropTypes.number,
+  hasDetailPanel: PropTypes.bool.isRequired,
+  detailPanelColumnAlignment: PropTypes.string,
+  hasSelection: PropTypes.bool,
+  headerStyle: PropTypes.object,
+  localization: PropTypes.object,
+  selectedCount: PropTypes.number,
+  sorting: PropTypes.bool,
+  onAllSelected: PropTypes.func,
+  onOrderChange: PropTypes.func,
+  orderBy: PropTypes.number,
+  orderDirection: PropTypes.string,
+  actionsHeaderIndex: PropTypes.number,
+  showActionsColumn: PropTypes.bool,
+  showSelectAllCheckbox: PropTypes.bool,
+  draggable: PropTypes.bool,
+  thirdSortClick: PropTypes.bool,
+  tooltip: PropTypes.string,
 };
-var styles = (exports.styles = function styles(theme) {
+export var styles = function styles(theme) {
   return {
     header: {
       // display: 'inline-block',
@@ -523,7 +468,7 @@ var styles = (exports.styles = function styles(theme) {
       backgroundColor: theme.palette.background.paper, // Change according to theme,
     },
   };
-});
-var _default = (exports.default = (0, _styles.withStyles)(styles, {
+};
+export default withStyles(styles, {
   withTheme: true,
-})(MTableHeader));
+})(MTableHeader);

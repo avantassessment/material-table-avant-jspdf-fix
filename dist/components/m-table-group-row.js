@@ -1,74 +1,18 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _toConsumableArray2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/toConsumableArray")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _IconButton = _interopRequireDefault(require("@mui/material/IconButton"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var React = _interopRequireWildcard(require("react"));
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _toConsumableArray from "@babel/runtime/helpers/toConsumableArray";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -82,14 +26,18 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import IconButton from "@mui/material/IconButton";
+import PropTypes from "prop-types";
+import * as React from "react";
 /* eslint-enable no-unused-vars */
-var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
-  _React$Component
-) {
+var MTableGroupRow = /*#__PURE__*/ (function (_React$Component) {
   function MTableGroupRow() {
     var _this;
-    (0, _classCallCheck2.default)(this, MTableGroupRow);
+    _classCallCheck(this, MTableGroupRow);
     for (
       var _len = arguments.length, args = new Array(_len), _key = 0;
       _key < _len;
@@ -98,15 +46,15 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
       args[_key] = arguments[_key];
     }
     _this = _callSuper(this, MTableGroupRow, [].concat(args));
-    (0, _defineProperty2.default)(_this, "rotateIconStyle", function (isOpen) {
+    _defineProperty(_this, "rotateIconStyle", function (isOpen) {
       return {
         transform: isOpen ? "rotate(90deg)" : "none",
       };
     });
     return _this;
   }
-  (0, _inherits2.default)(MTableGroupRow, _React$Component);
-  return (0, _createClass2.default)(MTableGroupRow, [
+  _inherits(MTableGroupRow, _React$Component);
+  return _createClass(MTableGroupRow, [
     {
       key: "render",
       value: function render() {
@@ -139,10 +87,9 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
                   groups: _this2.props.groups,
                   icons: _this2.props.icons,
                   level: _this2.props.level + 1,
-                  path: [].concat(
-                    (0, _toConsumableArray2.default)(_this2.props.path),
-                    [index]
-                  ),
+                  path: [].concat(_toConsumableArray(_this2.props.path), [
+                    index,
+                  ]),
                   onGroupExpandChanged: _this2.props.onGroupExpandChanged,
                   onRowSelected: _this2.props.onRowSelected,
                   onRowClick: _this2.props.onRowClick,
@@ -170,10 +117,9 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
                     components: _this2.props.components,
                     data: rowData,
                     icons: _this2.props.icons,
-                    path: [].concat(
-                      (0, _toConsumableArray2.default)(_this2.props.path),
-                      [index]
-                    ),
+                    path: [].concat(_toConsumableArray(_this2.props.path), [
+                      index,
+                    ]),
                     localization: _this2.props.localization,
                     key: index,
                     mode: rowData.tableData.editing,
@@ -199,10 +145,9 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
                     detailPanel: _this2.props.detailPanel,
                     getFieldValue: _this2.props.getFieldValue,
                     icons: _this2.props.icons,
-                    path: [].concat(
-                      (0, _toConsumableArray2.default)(_this2.props.path),
-                      [index]
-                    ),
+                    path: [].concat(_toConsumableArray(_this2.props.path), [
+                      index,
+                    ]),
                     onRowSelected: _this2.props.onRowSelected,
                     onRowClick: _this2.props.onRowClick,
                     onToggleDetailPanel: _this2.props.onToggleDetailPanel,
@@ -225,7 +170,7 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
         var freeCells = [];
         for (var i = 0; i < this.props.level; i++) {
           freeCells.push(
-            /*#__PURE__*/ React.createElement(_TableCell.default, {
+            /*#__PURE__*/ React.createElement(TableCell, {
               padding: "checkbox",
               key: i,
             })
@@ -246,7 +191,7 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
           React.Fragment,
           null,
           /*#__PURE__*/ React.createElement(
-            _TableRow.default,
+            TableRow,
             null,
             freeCells,
             /*#__PURE__*/ React.createElement(
@@ -259,9 +204,9 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
                 icons: this.props.icons,
               },
               /*#__PURE__*/ React.createElement(
-                _IconButton.default,
+                IconButton,
                 {
-                  style: (0, _objectSpread2.default)(
+                  style: _objectSpread(
                     {
                       transition: "all ease 200ms",
                     },
@@ -285,7 +230,8 @@ var MTableGroupRow = (exports.default = /*#__PURE__*/ (function (
       },
     },
   ]);
-})(React.Component));
+})(React.Component);
+export { MTableGroupRow as default };
 MTableGroupRow.defaultProps = {
   columns: [],
   groups: [],
@@ -293,33 +239,33 @@ MTableGroupRow.defaultProps = {
   level: 0,
 };
 MTableGroupRow.propTypes = {
-  actions: _propTypes.default.array,
-  columns: _propTypes.default.arrayOf(_propTypes.default.object),
-  components: _propTypes.default.object,
-  detailPanel: _propTypes.default.oneOfType([
-    _propTypes.default.func,
-    _propTypes.default.arrayOf(_propTypes.default.object),
+  actions: PropTypes.array,
+  columns: PropTypes.arrayOf(PropTypes.object),
+  components: PropTypes.object,
+  detailPanel: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.arrayOf(PropTypes.object),
   ]),
-  getFieldValue: _propTypes.default.func,
-  groupData: _propTypes.default.object,
-  groups: _propTypes.default.arrayOf(_propTypes.default.object),
-  hasAnyEditingRow: _propTypes.default.bool,
-  icons: _propTypes.default.object,
-  isTreeData: _propTypes.default.bool.isRequired,
-  level: _propTypes.default.number,
-  localization: _propTypes.default.object,
-  onGroupExpandChanged: _propTypes.default.func,
-  onRowSelected: _propTypes.default.func,
-  onRowClick: _propTypes.default.func,
-  onToggleDetailPanel: _propTypes.default.func.isRequired,
-  onTreeExpandChanged: _propTypes.default.func.isRequired,
-  onEditingCanceled: _propTypes.default.func,
-  onEditingApproved: _propTypes.default.func,
-  options: _propTypes.default.object,
-  path: _propTypes.default.arrayOf(_propTypes.default.number),
-  scrollWidth: _propTypes.default.number.isRequired,
-  cellEditable: _propTypes.default.object,
-  onCellEditStarted: _propTypes.default.func,
-  onCellEditFinished: _propTypes.default.func,
-  onBulkEditRowChanged: _propTypes.default.func,
+  getFieldValue: PropTypes.func,
+  groupData: PropTypes.object,
+  groups: PropTypes.arrayOf(PropTypes.object),
+  hasAnyEditingRow: PropTypes.bool,
+  icons: PropTypes.object,
+  isTreeData: PropTypes.bool.isRequired,
+  level: PropTypes.number,
+  localization: PropTypes.object,
+  onGroupExpandChanged: PropTypes.func,
+  onRowSelected: PropTypes.func,
+  onRowClick: PropTypes.func,
+  onToggleDetailPanel: PropTypes.func.isRequired,
+  onTreeExpandChanged: PropTypes.func.isRequired,
+  onEditingCanceled: PropTypes.func,
+  onEditingApproved: PropTypes.func,
+  options: PropTypes.object,
+  path: PropTypes.arrayOf(PropTypes.number),
+  scrollWidth: PropTypes.number.isRequired,
+  cellEditable: PropTypes.object,
+  onCellEditStarted: PropTypes.func,
+  onCellEditFinished: PropTypes.func,
+  onBulkEditRowChanged: PropTypes.func,
 };

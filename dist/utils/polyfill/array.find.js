@@ -1,5 +1,3 @@
-"use strict";
-
 Object.defineProperty(Array.prototype, "find", {
   value: function value(predicate) {
     if (this == null) {

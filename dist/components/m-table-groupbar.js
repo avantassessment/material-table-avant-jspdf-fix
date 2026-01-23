@@ -1,75 +1,18 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-var _typeof = require("@babel/runtime/helpers/typeof");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
-});
-exports.default = void 0;
-var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
-);
-var _objectSpread2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/objectSpread")
-);
-var _classCallCheck2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/classCallCheck")
-);
-var _createClass2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/createClass")
-);
-var _possibleConstructorReturn2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/possibleConstructorReturn")
-);
-var _getPrototypeOf2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/getPrototypeOf")
-);
-var _inherits2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/inherits")
-);
-var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
-);
-var _Toolbar = _interopRequireDefault(require("@mui/material/Toolbar"));
-var _Chip = _interopRequireDefault(require("@mui/material/Chip"));
-var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var React = _interopRequireWildcard(require("react"));
-var _reactBeautifulDnd = require("react-beautiful-dnd");
-function _getRequireWildcardCache(e) {
-  if ("function" != typeof WeakMap) return null;
-  var r = new WeakMap(),
-    t = new WeakMap();
-  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-    return e ? t : r;
-  })(e);
-}
-function _interopRequireWildcard(e, r) {
-  if (!r && e && e.__esModule) return e;
-  if (null === e || ("object" != _typeof(e) && "function" != typeof e))
-    return { default: e };
-  var t = _getRequireWildcardCache(r);
-  if (t && t.has(e)) return t.get(e);
-  var n = { __proto__: null },
-    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var u in e)
-    if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
-    }
-  return (n.default = e), t && t.set(e, n), n;
-}
+import _extends from "@babel/runtime/helpers/extends";
+import _objectSpread from "@babel/runtime/helpers/objectSpread";
+import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
+import _createClass from "@babel/runtime/helpers/createClass";
+import _possibleConstructorReturn from "@babel/runtime/helpers/possibleConstructorReturn";
+import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
+import _inherits from "@babel/runtime/helpers/inherits";
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 function _callSuper(t, o, e) {
   return (
-    (o = (0, _getPrototypeOf2.default)(o)),
-    (0, _possibleConstructorReturn2.default)(
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
       t,
       _isNativeReflectConstruct()
-        ? Reflect.construct(
-            o,
-            e || [],
-            (0, _getPrototypeOf2.default)(t).constructor
-          )
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
         : o.apply(t, e)
     )
   );
@@ -83,18 +26,25 @@ function _isNativeReflectConstruct() {
   return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
     return !!t;
   })();
-} /* eslint-disable no-unused-vars */
+}
+/* eslint-disable no-unused-vars */
+import Toolbar from "@mui/material/Toolbar";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 /* eslint-enable no-unused-vars */
 var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
   function MTableGroupbar(props) {
     var _this;
-    (0, _classCallCheck2.default)(this, MTableGroupbar);
+    _classCallCheck(this, MTableGroupbar);
     _this = _callSuper(this, MTableGroupbar, [props]);
-    (0, _defineProperty2.default)(_this, "getItemStyle", function (
+    _defineProperty(_this, "getItemStyle", function (
       isDragging,
       draggableStyle
     ) {
-      return (0, _objectSpread2.default)(
+      return _objectSpread(
         {
           // some basic styles to make the items look a bit nicer
           userSelect: "none",
@@ -104,9 +54,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
         draggableStyle
       );
     });
-    (0, _defineProperty2.default)(_this, "getListStyle", function (
-      isDraggingOver
-    ) {
+    _defineProperty(_this, "getListStyle", function (isDraggingOver) {
       return {
         // background: isDraggingOver ? 'lightblue' : '#0000000a',
         background: "#0000000a",
@@ -121,14 +69,14 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
     _this.state = {};
     return _this;
   }
-  (0, _inherits2.default)(MTableGroupbar, _React$Component);
-  return (0, _createClass2.default)(MTableGroupbar, [
+  _inherits(MTableGroupbar, _React$Component);
+  return _createClass(MTableGroupbar, [
     {
       key: "render",
       value: function render() {
         var _this2 = this;
         return /*#__PURE__*/ React.createElement(
-          _Toolbar.default,
+          Toolbar,
           {
             style: {
               padding: 0,
@@ -136,7 +84,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
             },
           },
           /*#__PURE__*/ React.createElement(
-            _reactBeautifulDnd.Droppable,
+            Droppable,
             {
               droppableId: "groups",
               direction: "horizontal",
@@ -151,7 +99,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
                 },
                 _this2.props.groupColumns.length > 0 &&
                   /*#__PURE__*/ React.createElement(
-                    _Typography.default,
+                    Typography,
                     {
                       variant: "caption",
                       style: {
@@ -162,7 +110,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
                   ),
                 _this2.props.groupColumns.map(function (columnDef, index) {
                   return /*#__PURE__*/ React.createElement(
-                    _reactBeautifulDnd.Draggable,
+                    Draggable,
                     {
                       key: columnDef.tableData.id,
                       draggableId: columnDef.tableData.id.toString(),
@@ -171,7 +119,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
                     function (provided, snapshot) {
                       return /*#__PURE__*/ React.createElement(
                         "div",
-                        (0, _extends2.default)(
+                        _extends(
                           {
                             ref: provided.innerRef,
                           },
@@ -185,8 +133,8 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
                           }
                         ),
                         /*#__PURE__*/ React.createElement(
-                          _Chip.default,
-                          (0, _extends2.default)({}, provided.dragHandleProps, {
+                          Chip,
+                          _extends({}, provided.dragHandleProps, {
                             onClick: function onClick() {
                               return _this2.props.onSortChanged(columnDef);
                             },
@@ -240,7 +188,7 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
                 }),
                 _this2.props.groupColumns.length === 0 &&
                   /*#__PURE__*/ React.createElement(
-                    _Typography.default,
+                    Typography,
                     {
                       variant: "caption",
                       style: {
@@ -260,9 +208,9 @@ var MTableGroupbar = /*#__PURE__*/ (function (_React$Component) {
 })(React.Component);
 MTableGroupbar.defaultProps = {};
 MTableGroupbar.propTypes = {
-  localization: _propTypes.default.shape({
-    groupedBy: _propTypes.default.string,
-    placeholder: _propTypes.default.string,
+  localization: PropTypes.shape({
+    groupedBy: PropTypes.string,
+    placeholder: PropTypes.string,
   }),
 };
-var _default = (exports.default = MTableGroupbar);
+export default MTableGroupbar;

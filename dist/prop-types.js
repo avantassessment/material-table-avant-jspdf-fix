@@ -1,97 +1,78 @@
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-Object.defineProperty(exports, "__esModule", {
-  value: true,
+import PropTypes from "prop-types";
+var RefComponent = PropTypes.shape({
+  current: PropTypes.element,
 });
-exports.propTypes = void 0;
-var _propTypes = _interopRequireDefault(require("prop-types"));
-var RefComponent = _propTypes.default.shape({
-  current: _propTypes.default.element,
-});
-var StyledComponent = _propTypes.default.shape({
-  classes: _propTypes.default.object,
+var StyledComponent = PropTypes.shape({
+  classes: PropTypes.object,
   innerRef: RefComponent,
 });
-var propTypes = (exports.propTypes = {
-  actions: _propTypes.default.arrayOf(
-    _propTypes.default.oneOfType([
-      _propTypes.default.func,
-      _propTypes.default.shape({
-        icon: _propTypes.default.oneOfType([
-          _propTypes.default.element,
-          _propTypes.default.func,
-          _propTypes.default.string,
+export var propTypes = {
+  actions: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        icon: PropTypes.oneOfType([
+          PropTypes.element,
+          PropTypes.func,
+          PropTypes.string,
           RefComponent,
         ]).isRequired,
-        isFreeAction: _propTypes.default.bool,
-        position: _propTypes.default.oneOf([
+        isFreeAction: PropTypes.bool,
+        position: PropTypes.oneOf([
           "auto",
           "toolbar",
           "toolbarOnSelect",
           "row",
         ]),
-        tooltip: _propTypes.default.string,
-        onClick: _propTypes.default.func.isRequired,
-        iconProps: _propTypes.default.object,
-        disabled: _propTypes.default.bool,
-        hidden: _propTypes.default.bool,
+        tooltip: PropTypes.string,
+        onClick: PropTypes.func.isRequired,
+        iconProps: PropTypes.object,
+        disabled: PropTypes.bool,
+        hidden: PropTypes.bool,
       }),
     ])
   ),
-  columns: _propTypes.default.arrayOf(
-    _propTypes.default.shape({
-      cellStyle: _propTypes.default.oneOfType([
-        _propTypes.default.object,
-        _propTypes.default.func,
-      ]),
-      currencySetting: _propTypes.default.shape({
-        locale: _propTypes.default.string,
-        currencyCode: _propTypes.default.string,
-        minimumFractionDigits: _propTypes.default.number,
-        maximumFractionDigits: _propTypes.default.number,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      cellStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+      currencySetting: PropTypes.shape({
+        locale: PropTypes.string,
+        currencyCode: PropTypes.string,
+        minimumFractionDigits: PropTypes.number,
+        maximumFractionDigits: PropTypes.number,
       }),
-      customFilterAndSearch: _propTypes.default.func,
-      customSort: _propTypes.default.func,
-      defaultFilter: _propTypes.default.any,
-      defaultSort: _propTypes.default.oneOf(["asc", "desc"]),
-      editComponent: _propTypes.default.oneOfType([
-        _propTypes.default.element,
-        _propTypes.default.func,
+      customFilterAndSearch: PropTypes.func,
+      customSort: PropTypes.func,
+      defaultFilter: PropTypes.any,
+      defaultSort: PropTypes.oneOf(["asc", "desc"]),
+      editComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+      emptyValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.func,
       ]),
-      emptyValue: _propTypes.default.oneOfType([
-        _propTypes.default.string,
-        _propTypes.default.node,
-        _propTypes.default.func,
+      export: PropTypes.bool,
+      field: PropTypes.string,
+      filtering: PropTypes.bool,
+      filterCellStyle: PropTypes.object,
+      filterPlaceholder: PropTypes.string,
+      filterComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+      grouping: PropTypes.bool,
+      headerStyle: PropTypes.object,
+      hidden: PropTypes.bool,
+      hideFilterIcon: PropTypes.bool,
+      initialEditValue: PropTypes.any,
+      lookup: PropTypes.object,
+      editable: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.oneOf(["always", "onUpdate", "onAdd", "never"]),
       ]),
-      export: _propTypes.default.bool,
-      field: _propTypes.default.string,
-      filtering: _propTypes.default.bool,
-      filterCellStyle: _propTypes.default.object,
-      filterPlaceholder: _propTypes.default.string,
-      filterComponent: _propTypes.default.oneOfType([
-        _propTypes.default.element,
-        _propTypes.default.func,
-      ]),
-      grouping: _propTypes.default.bool,
-      headerStyle: _propTypes.default.object,
-      hidden: _propTypes.default.bool,
-      hideFilterIcon: _propTypes.default.bool,
-      initialEditValue: _propTypes.default.any,
-      lookup: _propTypes.default.object,
-      editable: _propTypes.default.oneOfType([
-        _propTypes.default.func,
-        _propTypes.default.oneOf(["always", "onUpdate", "onAdd", "never"]),
-      ]),
-      removable: _propTypes.default.bool,
-      render: _propTypes.default.func,
-      searchable: _propTypes.default.bool,
-      sorting: _propTypes.default.bool,
-      title: _propTypes.default.oneOfType([
-        _propTypes.default.element,
-        _propTypes.default.string,
-      ]),
-      type: _propTypes.default.oneOf([
+      removable: PropTypes.bool,
+      render: PropTypes.func,
+      searchable: PropTypes.bool,
+      sorting: PropTypes.bool,
+      title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+      type: PropTypes.oneOf([
         "string",
         "boolean",
         "numeric",
@@ -102,272 +83,253 @@ var propTypes = (exports.propTypes = {
       ]),
     })
   ).isRequired,
-  components: _propTypes.default.shape({
-    Action: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+  components: PropTypes.shape({
+    Action: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Actions: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Actions: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Body: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Body: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Cell: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Cell: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Container: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Container: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    EditField: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    EditField: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    EditRow: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    EditRow: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    FilterRow: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    FilterRow: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Groupbar: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Groupbar: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    GroupRow: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    GroupRow: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Header: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Header: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    OverlayLoading: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    OverlayLoading: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    OverlayError: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    OverlayError: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Pagination: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Pagination: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Row: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Row: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
-    Toolbar: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Toolbar: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       StyledComponent,
     ]),
   }),
-  data: _propTypes.default.oneOfType([
-    _propTypes.default.arrayOf(_propTypes.default.object),
-    _propTypes.default.func,
+  data: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.func,
   ]).isRequired,
-  editable: _propTypes.default.shape({
-    isEditable: _propTypes.default.func,
-    isDeletable: _propTypes.default.func,
-    onRowAdd: _propTypes.default.func,
-    onRowUpdate: _propTypes.default.func,
-    onRowDelete: _propTypes.default.func,
-    onRowAddCancelled: _propTypes.default.func,
-    onRowUpdateCancelled: _propTypes.default.func,
-    isEditHidden: _propTypes.default.func,
-    isDeleteHidden: _propTypes.default.func,
+  editable: PropTypes.shape({
+    isEditable: PropTypes.func,
+    isDeletable: PropTypes.func,
+    onRowAdd: PropTypes.func,
+    onRowUpdate: PropTypes.func,
+    onRowDelete: PropTypes.func,
+    onRowAddCancelled: PropTypes.func,
+    onRowUpdateCancelled: PropTypes.func,
+    isEditHidden: PropTypes.func,
+    isDeleteHidden: PropTypes.func,
   }),
-  detailPanel: _propTypes.default.oneOfType([
-    _propTypes.default.func,
-    _propTypes.default.arrayOf(
-      _propTypes.default.oneOfType([
-        _propTypes.default.func,
-        _propTypes.default.shape({
-          disabled: _propTypes.default.bool,
-          icon: _propTypes.default.oneOfType([
-            _propTypes.default.element,
-            _propTypes.default.func,
-            _propTypes.default.string,
+  detailPanel: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({
+          disabled: PropTypes.bool,
+          icon: PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.func,
+            PropTypes.string,
             RefComponent,
           ]),
-          openIcon: _propTypes.default.oneOfType([
-            _propTypes.default.element,
-            _propTypes.default.func,
-            _propTypes.default.string,
+          openIcon: PropTypes.oneOfType([
+            PropTypes.element,
+            PropTypes.func,
+            PropTypes.string,
             RefComponent,
           ]),
-          tooltip: _propTypes.default.string,
-          render: _propTypes.default.func.isRequired,
+          tooltip: PropTypes.string,
+          render: PropTypes.func.isRequired,
         }),
       ])
     ),
   ]),
-  icons: _propTypes.default.shape({
-    Add: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+  icons: PropTypes.shape({
+    Add: PropTypes.oneOfType([PropTypes.element, PropTypes.func, RefComponent]),
+    Check: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Check: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Clear: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Clear: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Delete: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Delete: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    DetailPanel: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    DetailPanel: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Edit: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Edit: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Export: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Export: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Filter: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Filter: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    FirstPage: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    FirstPage: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    LastPage: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    LastPage: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    NextPage: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    NextPage: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    PreviousPage: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    PreviousPage: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Refresh: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Refresh: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    ResetSearch: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    ResetSearch: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    Search: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    Search: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    SortArrow: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    SortArrow: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    ThirdStateCheck: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
-    ThirdStateCheck: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
-      RefComponent,
-    ]),
-    ViewColumn: _propTypes.default.oneOfType([
-      _propTypes.default.element,
-      _propTypes.default.func,
+    ViewColumn: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func,
       RefComponent,
     ]),
   }),
-  isLoading: _propTypes.default.bool,
-  title: _propTypes.default.oneOfType([
-    _propTypes.default.element,
-    _propTypes.default.string,
-  ]),
-  options: _propTypes.default.shape({
-    actionsCellStyle: _propTypes.default.object,
-    editCellStyle: _propTypes.default.object,
-    detailPanelColumnStyle: _propTypes.default.object,
-    actionsColumnIndex: _propTypes.default.number,
-    addRowPosition: _propTypes.default.oneOf(["first", "last"]),
-    columnsButton: _propTypes.default.bool,
-    defaultExpanded: _propTypes.default.oneOfType([
-      _propTypes.default.bool,
-      _propTypes.default.func,
-    ]),
-    debounceInterval: _propTypes.default.number,
-    detailPanelType: _propTypes.default.oneOf(["single", "multiple"]),
-    doubleHorizontalScroll: _propTypes.default.bool,
-    emptyRowsWhenPaging: _propTypes.default.bool,
-    exportAllData: _propTypes.default.bool,
-    exportButton: _propTypes.default.oneOfType([
-      _propTypes.default.bool,
-      _propTypes.default.shape({
-        csv: _propTypes.default.bool,
-        pdf: _propTypes.default.bool,
+  isLoading: PropTypes.bool,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  options: PropTypes.shape({
+    actionsCellStyle: PropTypes.object,
+    editCellStyle: PropTypes.object,
+    detailPanelColumnStyle: PropTypes.object,
+    actionsColumnIndex: PropTypes.number,
+    addRowPosition: PropTypes.oneOf(["first", "last"]),
+    columnsButton: PropTypes.bool,
+    defaultExpanded: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    debounceInterval: PropTypes.number,
+    detailPanelType: PropTypes.oneOf(["single", "multiple"]),
+    doubleHorizontalScroll: PropTypes.bool,
+    emptyRowsWhenPaging: PropTypes.bool,
+    exportAllData: PropTypes.bool,
+    exportButton: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        csv: PropTypes.bool,
+        pdf: PropTypes.bool,
       }),
     ]),
-    exportDelimiter: _propTypes.default.string,
-    exportFileName: _propTypes.default.oneOfType([
-      _propTypes.default.string,
-      _propTypes.default.func,
-    ]),
-    exportCsv: _propTypes.default.func,
-    filtering: _propTypes.default.bool,
-    filterCellStyle: _propTypes.default.object,
-    filterRowStyle: _propTypes.default.object,
-    header: _propTypes.default.bool,
-    headerSelectionProps: _propTypes.default.object,
-    headerStyle: _propTypes.default.object,
-    hideFilterIcons: _propTypes.default.bool,
-    initialPage: _propTypes.default.number,
-    maxBodyHeight: _propTypes.default.oneOfType([
-      _propTypes.default.number,
-      _propTypes.default.string,
-    ]),
-    minBodyHeight: _propTypes.default.oneOfType([
-      _propTypes.default.number,
-      _propTypes.default.string,
-    ]),
-    loadingType: _propTypes.default.oneOf(["overlay", "linear"]),
-    overflowY: _propTypes.default.oneOf([
+    exportDelimiter: PropTypes.string,
+    exportFileName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    exportCsv: PropTypes.func,
+    filtering: PropTypes.bool,
+    filterCellStyle: PropTypes.object,
+    filterRowStyle: PropTypes.object,
+    header: PropTypes.bool,
+    headerSelectionProps: PropTypes.object,
+    headerStyle: PropTypes.object,
+    hideFilterIcons: PropTypes.bool,
+    initialPage: PropTypes.number,
+    maxBodyHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    minBodyHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    loadingType: PropTypes.oneOf(["overlay", "linear"]),
+    overflowY: PropTypes.oneOf([
       "visible",
       "hidden",
       "scroll",
@@ -375,66 +337,56 @@ var propTypes = (exports.propTypes = {
       "initial",
       "inherit",
     ]),
-    padding: _propTypes.default.oneOf(["default", "dense"]),
-    paging: _propTypes.default.bool,
-    pageSize: _propTypes.default.number,
-    pageSizeOptions: _propTypes.default.arrayOf(_propTypes.default.number),
-    paginationType: _propTypes.default.oneOf(["normal", "stepped"]),
-    paginationPosition: _propTypes.default.oneOf(["bottom", "top", "both"]),
-    rowStyle: _propTypes.default.oneOfType([
-      _propTypes.default.object,
-      _propTypes.default.func,
-    ]),
-    search: _propTypes.default.bool,
-    searchText: _propTypes.default.string,
-    toolbarButtonAlignment: _propTypes.default.oneOf(["left", "right"]),
-    searchFieldAlignment: _propTypes.default.oneOf(["left", "right"]),
-    searchFieldStyle: _propTypes.default.object,
-    searchAutoFocus: _propTypes.default.bool,
-    searchFieldVariant: _propTypes.default.oneOf([
-      "standard",
-      "filled",
-      "outlined",
-    ]),
-    selection: _propTypes.default.bool,
-    selectionProps: _propTypes.default.oneOfType([
-      _propTypes.default.object,
-      _propTypes.default.func,
-    ]),
-    showEmptyDataSourceMessage: _propTypes.default.bool,
-    showFirstLastPageButtons: _propTypes.default.bool,
-    showSelectAllCheckbox: _propTypes.default.bool,
-    showTitle: _propTypes.default.bool,
-    showTextRowsSelected: _propTypes.default.bool,
-    sorting: _propTypes.default.bool,
-    toolbar: _propTypes.default.bool,
-    thirdSortClick: _propTypes.default.bool,
+    padding: PropTypes.oneOf(["default", "dense"]),
+    paging: PropTypes.bool,
+    pageSize: PropTypes.number,
+    pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+    paginationType: PropTypes.oneOf(["normal", "stepped"]),
+    paginationPosition: PropTypes.oneOf(["bottom", "top", "both"]),
+    rowStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    search: PropTypes.bool,
+    searchText: PropTypes.string,
+    toolbarButtonAlignment: PropTypes.oneOf(["left", "right"]),
+    searchFieldAlignment: PropTypes.oneOf(["left", "right"]),
+    searchFieldStyle: PropTypes.object,
+    searchAutoFocus: PropTypes.bool,
+    searchFieldVariant: PropTypes.oneOf(["standard", "filled", "outlined"]),
+    selection: PropTypes.bool,
+    selectionProps: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    showEmptyDataSourceMessage: PropTypes.bool,
+    showFirstLastPageButtons: PropTypes.bool,
+    showSelectAllCheckbox: PropTypes.bool,
+    showTitle: PropTypes.bool,
+    showTextRowsSelected: PropTypes.bool,
+    sorting: PropTypes.bool,
+    toolbar: PropTypes.bool,
+    thirdSortClick: PropTypes.bool,
   }),
-  localization: _propTypes.default.shape({
-    grouping: _propTypes.default.shape({
-      groupedBy: _propTypes.default.string,
-      placeholder: _propTypes.default.string,
+  localization: PropTypes.shape({
+    grouping: PropTypes.shape({
+      groupedBy: PropTypes.string,
+      placeholder: PropTypes.string,
     }),
-    pagination: _propTypes.default.object,
-    toolbar: _propTypes.default.object,
-    header: _propTypes.default.object,
-    body: _propTypes.default.object,
+    pagination: PropTypes.object,
+    toolbar: PropTypes.object,
+    header: PropTypes.object,
+    body: PropTypes.object,
   }),
-  initialFormData: _propTypes.default.object,
-  onSearchChange: _propTypes.default.func,
-  onFilterChange: _propTypes.default.func,
-  onColumnDragged: _propTypes.default.func,
-  onGroupRemoved: _propTypes.default.func,
-  onSelectionChange: _propTypes.default.func,
-  onChangeRowsPerPage: _propTypes.default.func,
-  onChangePage: _propTypes.default.func,
-  onChangeColumnHidden: _propTypes.default.func,
-  onOrderChange: _propTypes.default.func,
-  onRowClick: _propTypes.default.func,
-  onTreeExpandChange: _propTypes.default.func,
-  onQueryChange: _propTypes.default.func,
-  tableRef: _propTypes.default.any,
-  style: _propTypes.default.object,
-  page: _propTypes.default.number,
-  totalCount: _propTypes.default.number,
-});
+  initialFormData: PropTypes.object,
+  onSearchChange: PropTypes.func,
+  onFilterChange: PropTypes.func,
+  onColumnDragged: PropTypes.func,
+  onGroupRemoved: PropTypes.func,
+  onSelectionChange: PropTypes.func,
+  onChangeRowsPerPage: PropTypes.func,
+  onChangePage: PropTypes.func,
+  onChangeColumnHidden: PropTypes.func,
+  onOrderChange: PropTypes.func,
+  onRowClick: PropTypes.func,
+  onTreeExpandChange: PropTypes.func,
+  onQueryChange: PropTypes.func,
+  tableRef: PropTypes.any,
+  style: PropTypes.object,
+  page: PropTypes.number,
+  totalCount: PropTypes.number,
+};
